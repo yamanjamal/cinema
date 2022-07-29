@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('seat_id');
             $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
             $table->unsignedBigInteger('movie_id');
@@ -27,7 +26,7 @@ return new class extends Migration
             $table->integer('glasses')->nullable();
             $table->date('date');
             $table->string('starttime');
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->index('user_id');
             $table->index('movie_id');

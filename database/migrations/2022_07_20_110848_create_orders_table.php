@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('code');
             $table->string('snack_name');
             $table->dateTime('date');
-            $table->string('status');
             $table->enum('status',['ordered','received'])->default('ordered');
             $table->float('total_price');
             $table->unsignedBigInteger('user_id');

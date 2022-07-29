@@ -17,7 +17,7 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->title(),
+            // 'name'=>$this->faker->title(),
             'date'=>'2021-07-12',
             'starttime'=>'3:00',
             'seat_id'=>rand(1,3),

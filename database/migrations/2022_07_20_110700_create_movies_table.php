@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('showing_type')->default('now showing');
             $table->timestamps();
             $table->index('hall_id');
-
         });
     }
 

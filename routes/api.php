@@ -18,14 +18,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// Route::group(['middleware'=>'auth:sanctum'], function() {
+    
+//     // +++++++++++++++++++++++++++++++start Project api++++++++++++++++++++++++++++++++
+//     Route::get('projects/search',           [ProjectController::class,'search']);
+//     Route::apiresource('projects',          ProjectController::class);
+//     // +++++++++++++++++++++++++++++++end Project api++++++++++++++++++++++++++++++++++
+//     Route::apiresource('tasks',          TaskController::class);
+// });
+
+
 require __DIR__.'/Basecode.php'; 
 
-Route::group(['middleware'=>'auth:sanctum'], function() {
-    
-    // +++++++++++++++++++++++++++++++start Project api++++++++++++++++++++++++++++++++
-    Route::get('projects/search',           [ProjectController::class,'search']);
-    Route::apiresource('projects',          ProjectController::class);
-    // +++++++++++++++++++++++++++++++end Project api++++++++++++++++++++++++++++++++++
-    Route::apiresource('tasks',          TaskController::class);
-});
 

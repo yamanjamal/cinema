@@ -18,12 +18,13 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             HallSeeder::class,
             MovieSeeder::class,
-            SeatSeeder::class,
+            // SeatSeeder::class,
             PriceSeeder::class,
-            TicketSeeder::class,
-            StarttimeSeeder::class,
+            // TicketSeeder::class,
+            TimeSeeder::class,
             GenreSeeder::class,
             SnackSeeder::class,
+            PermissionSeeder::class,
             OrderSeeder::class,
         ]);
     }

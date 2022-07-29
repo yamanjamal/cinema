@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->string('time')->default(null);
             $table->date('date')->default(null);
             $table->boolean('available')->default(1);
-            $table->string('code');
             $table->unsignedBigInteger('hall_id');
             $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');
             $table->timestamps();

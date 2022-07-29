@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Seat;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class SeatSeeder extends Seeder
 {
