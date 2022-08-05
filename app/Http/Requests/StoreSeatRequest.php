@@ -24,10 +24,10 @@ class StoreSeatRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'code'    =>['string','required'],
+            'date'    =>['date','required'],
+            'time'    =>['string','required'],
+            'hall_id' =>['string','required','exists:halls,id'],
         ];
     }
 }

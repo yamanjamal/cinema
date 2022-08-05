@@ -11,18 +11,38 @@ class Movie extends Model
 
     protected $fillable = [
         'name',
-        'user_id',
+        'hall_id',
+        'type',
+        'image',
+        'video',
+        'description',
+        'from',
+        'to',
+        'showing_type',
     ];
-    
-    public function User(){
 
-        return $this->belongsTo(User::class);
+    protected $casts=['from'];
+
+    public function Hall(){
+
+        return $this->belongsTo(Hall::class);
+    }
+
+    public function Tickets(){
+
+        return $this->hasMany(Ticket::class);
         
     }
 
-    public function Tests(){
+    public function Genres(){
 
-        return $this->hasMany(Test::class);
+        return $this->belongsToMany(Genre::class);
+        
+    }
+
+    public function Times(){
+
+        return $this->belongsToMany(Time::class);
         
     }
 }

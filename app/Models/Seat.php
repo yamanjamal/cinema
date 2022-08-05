@@ -10,19 +10,21 @@ class Seat extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'user_id',
+        'hall_id',
+        'available',
+        'code',
+        'data',
+        'time',
     ];
-    
-    public function User(){
 
-        return $this->belongsTo(User::class);
-        
+    public function Hall(){
+
+        return $this->belongsTo(Hall::class);
     }
 
-    public function Tests(){
+    public function Tickets(){
 
-        return $this->hasMany(Test::class);
+        return $this->hasMany(Ticket::class);
         
     }
 }

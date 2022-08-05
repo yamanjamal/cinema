@@ -24,10 +24,9 @@ class UpdateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
-        ];
+        //     'code'        => ['string','required'],
+        //     'points'      => ['double'],
+        //     'user_id'     => ['required','exists:users,id'],
+        // ];
     }
 }

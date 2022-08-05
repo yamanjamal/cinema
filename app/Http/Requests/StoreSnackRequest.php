@@ -24,10 +24,10 @@ class StoreSnackRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'name'          =>['string','required'],
+            'description'   =>['string','required'],
+            'price'         =>['numeric','required'],
+            'image'         =>['image','required'],
         ];
     }
 }

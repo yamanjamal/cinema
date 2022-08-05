@@ -24,10 +24,12 @@ class StoreTicketRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'glasses'     =>['integer','required'],
+            'date'        =>['date','required'],
+            'starttime'   =>['string','required'],
+            'seats'       =>['string','required','exists:seats,id'],
+            'movie_id'    =>['string','required','exists:movies,id'],
+            'price_id'    =>['string','required','exists:prices,id'],
         ];
     }
 }

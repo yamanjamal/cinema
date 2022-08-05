@@ -10,19 +10,22 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'user_id',
+        'account_id',
+        'user_name',
+        'user_phone',
+        'order_id',
+        'total_price',
     ];
     
-    public function User(){
+    public function Account(){
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Account::class);
         
     }
+    
+    public function Order(){
 
-    public function Tests(){
-
-        return $this->hasMany(Test::class);
+        return $this->belongsTo(Order::class);
         
     }
 }

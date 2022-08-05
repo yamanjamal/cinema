@@ -10,7 +10,8 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'code',
+        'points',
         'user_id',
     ];
     
@@ -20,9 +21,9 @@ class Account extends Model
         
     }
 
-    public function Tests(){
+    public function Invoices(){
 
-        return $this->hasMany(Test::class);
+        return $this->hasMany(Invoice::class);
         
     }
 }

@@ -24,10 +24,12 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'code'        =>['string','required'],
+            'snack_name'  =>['string','required'],
+            'date'        =>['datetime','required'],
+            'status'      =>['in:ordered,received','required'],
+            'totalprice'  =>['string','required'],
+            'user_id'     =>['string','required','exists:users,id'],
         ];
     }
 }

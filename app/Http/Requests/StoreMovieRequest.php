@@ -24,10 +24,16 @@ class StoreMovieRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'name'        =>['string','required'],
+            'hall_id'     =>['string','required','exists:halls,id'],
+            'type'        =>['string','required'],
+            'image'       =>['image','required'],
+            'description' =>['string','required'],
+            'from'        =>['date','required'],
+            'to'          =>['date','required'],
+            'showing_type'=>['string','required'],
+            'genres'      =>['required','exists:genres,id'],
+            'times'       =>['required','exists:times,id'],
         ];
     }
 }

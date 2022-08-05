@@ -11,18 +11,16 @@ class Hall extends Model
 
     protected $fillable = [
         'name',
-        'user_id',
     ];
-    
-    public function User(){
 
-        return $this->belongsTo(User::class);
+    public function Movies(){
+
+        return $this->hasMany(Movie::class);
         
     }
+    public function Seats(){
 
-    public function Tests(){
-
-        return $this->hasMany(Test::class);
+        return $this->hasMany(Seat::class);
         
     }
 }

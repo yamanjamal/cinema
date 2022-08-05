@@ -24,10 +24,12 @@ class StoreInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => ['string','required'],
-            'dead_line'    => ['date','date_format:Y-m-d' ,'required'],
-            'user_id'      => ['required','exists:users,id'],
-
+            'user_name'     => ['string','required'],
+            'total_price'   => ['float','required'],
+            'user_phone'    => ['string','required'],
+            'user_id'       => ['required','exists:users,id'],
+            'order_id'      => ['required','exists:orders,id'],
+            'account_id'    => ['required','exists:accounts,id'],
         ];
     }
 }

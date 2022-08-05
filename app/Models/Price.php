@@ -10,19 +10,14 @@ class Price extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'user_id',
+        'ticket_price',
+        'glass_price',
     ];
+
     
-    public function User(){
+    public function Tickets(){
 
-        return $this->belongsTo(User::class);
-        
-    }
-
-    public function Tests(){
-
-        return $this->hasMany(Test::class);
+        return $this->hasMany(Ticket::class);
         
     }
 }

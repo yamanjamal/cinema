@@ -11,18 +11,15 @@ class Snack extends Model
 
     protected $fillable = [
         'name',
-        'user_id',
+        'description',
+        'price',
+        'image',
+        'active',
     ];
-    
-    public function User(){
 
-        return $this->belongsTo(User::class);
-        
-    }
+    public function Orders(){
 
-    public function Tests(){
-
-        return $this->hasMany(Test::class);
+        return $this->belongsToMany(Order::class);
         
     }
 }
