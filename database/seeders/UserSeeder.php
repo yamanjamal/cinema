@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'phone' => '0962144639',
@@ -23,7 +23,9 @@ class UserSeeder extends Seeder
             'id_img'=>'img/5.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        User::create([
+        $admin->assignRole('Admin');
+
+        $reseption = User::create([
             'name' => 'reseption',
             'email' => 'reseption@reseption.com',
             'phone' => '0959374880',
@@ -31,7 +33,9 @@ class UserSeeder extends Seeder
             'id_img'=>'img/10.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        User::create([
+        $reseption->assignRole('reseption');
+
+        $vendor = User::create([
             'name' => 'vendor',
             'email' => 'vendor@vendor.com',
             'phone' => '0988025806',
@@ -39,5 +43,6 @@ class UserSeeder extends Seeder
             'id_img'=>'img/9.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
+        $vendor->assignRole('vendor');
     }
 }

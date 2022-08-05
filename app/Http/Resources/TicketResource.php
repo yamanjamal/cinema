@@ -19,6 +19,7 @@ class TicketResource extends JsonResource
             'glasses'       => $this->glasses,
             'date'          => $this->date,
             'starttime'     => $this->starttime,
+            'active'        => $this->active,
             'user'          => new UserResource($this->whenloaded('User')),
             'seat'          => new SeatResource($this->whenloaded('Seat')),
             'price'         => new PriceResource($this->whenloaded('Price')),

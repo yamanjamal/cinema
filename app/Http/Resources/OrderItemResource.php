@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TimeResource extends JsonResource
+class OrderItemResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,9 @@ class TimeResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'starttime'     => $this->starttime,
-            'endtime'       => $this->endtime,
-            'active'        => $this->active,
-            'movies'        => MovieResource::collection($this->whenloaded('Movies')),
+            'ammount'         => $this->ammount,
+            'order'          => new OrderResource($this->whenloaded('Order')),
+            'snack'          => new SnackResource($this->whenloaded('Snack')),
         ];
     }
 }

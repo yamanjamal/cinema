@@ -20,11 +20,11 @@ class UserResource extends JsonResource
             'phone'     => $this->phone,
             'name'      => $this->name,
             'id_img'    => $this->id_img,
+            'active'    => $this->active,
             'roles'     => RoleResource::collection($this->whenloaded('roles')),
             'tickets'   => TicketResource::collection($this->whenloaded('Tickets')),
             'orders'    => OrderResource::collection($this->whenloaded('Orders')),
             'account'   => new AccountResource($this->whenloaded('Account')),
-
         ];
     }
 }
