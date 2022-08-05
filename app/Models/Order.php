@@ -11,7 +11,6 @@ class Order extends Model
 
     protected $fillable = [
         'code',
-        'snack_name',
         'user_id',
         'date',
         'status',
@@ -30,9 +29,9 @@ class Order extends Model
     }
 
 
-    public function Snacks(){
+    public function OrederItems(){
 
-        return $this->belongsToMany(Snack::class);
+        return $this->hasMany(OrederItem::class);
         
     }
 }

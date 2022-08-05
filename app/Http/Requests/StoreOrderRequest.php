@@ -25,10 +25,7 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'code'        =>['string','required'],
-            'snack_name'  =>['string','required'],
             'date'        =>['datetime','required'],
-            'status'      =>['in:ordered,received','required'],
-            'totalprice'  =>['string','required'],
             'user_id'     =>['string','required','exists:users,id'],
         ];
     }

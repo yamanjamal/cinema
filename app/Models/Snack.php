@@ -17,9 +17,9 @@ class Snack extends Model
         'active',
     ];
 
-    public function Orders(){
+    public function OrederItems(){
 
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(OrederItem::class);
         
     }
 }
