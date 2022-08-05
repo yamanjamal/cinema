@@ -16,9 +16,13 @@ class TicketResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'title'         => $this->title,
+            'glasses'       => $this->glasses,
+            'date'          => $this->date,
+            'starttime'     => $this->starttime,
             'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'seat'          => new SeatResource($this->whenloaded('Seat')),
+            'price'         => new PriceResource($this->whenloaded('Price')),
+            'movie'         => new MoiveResource($this->whenloaded('Moive')),
         ];
     }
 }

@@ -16,9 +16,18 @@ class MovieResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'name'          => $this->name,
+            'type'          => $this->type,
+            'image'         => $this->image,
+            'description'   => $this->description,
+            'Video'         => $this->Video,
+            'from'          => $this->from,
+            'to'            => $this->to,
+            'showing_type'  => $this->showing_type,
+            'hall'          => new HallResource($this->whenloaded('Hall')),
+            'tickets'       => TicketResource::collection($this->whenloaded('Tickets')),
+            'genres'        => GenreResource::collection($this->whenloaded('Genres')),
+            'tiems'         => TimeResource::collection($this->whenloaded('Times')),
         ];
     }
 }

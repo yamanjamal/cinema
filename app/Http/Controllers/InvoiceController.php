@@ -37,7 +37,7 @@ class InvoiceController extends BaseController
     public function store(StoreInvoiceRequest $request)
     {
         $invoice = Invoice::create($request->validated());
-        return $this->sendResponse(new InvoiceResource($invoice ),'Invoice created sussesfully');
+        return $this->sendResponse(new InvoiceResource($invoice),'Invoice created sussesfully');
     }
 
     /**

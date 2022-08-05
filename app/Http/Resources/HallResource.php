@@ -15,10 +15,10 @@ class HallResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'id'           => $this->id,
+            'name'         => $this->name,
+            'seats'        => SeatResource::collection($this->whenloaded('Seats')),
+            'movies'       => MovieResource::collection($this->whenloaded('Movies')),
         ];
     }
 }

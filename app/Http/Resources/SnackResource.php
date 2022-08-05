@@ -16,9 +16,11 @@ class SnackResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'name'          => $this->name,
+            'price'         => $this->price,
+            'image'         => $this->image,
+            'description'   => $this->description,
+            'orderitems'    => OrderItemResource::collection($this->whenloaded('OrderItems')),
         ];
     }
 }

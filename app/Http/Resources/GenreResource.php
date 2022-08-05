@@ -15,10 +15,9 @@ class GenreResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'id'          => $this->id,
+            'name'        => $this->name,
+            'movies'      => MovieResource::collection($this->whenloaded('Movies')),
         ];
     }
 }

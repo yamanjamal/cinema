@@ -15,10 +15,11 @@ class AccountResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'id'           => $this->id,
+            'code'         => $this->code,
+            'points'       => $this->points,
+            'user'         => new UserResource($this->whenloaded('User')),
+            'invoices'     => InvoiceResource::collection($this->whenloaded('Invoices')),
         ];
     }
 }

@@ -16,9 +16,9 @@ class TimeResource extends JsonResource
     {
         return [
             'id'            => $this->id,
-            'title'         => $this->title,
-            'user'          => new UserResource($this->whenloaded('User')),
-            'tests'         => TestResource::collection($this->whenloaded('Tests')),
+            'starttime'     => $this->starttime,
+            'endtime'       => $this->endtime,
+            'movies'        => MovieResource::collection($this->whenloaded('Movies')),
         ];
     }
 }
