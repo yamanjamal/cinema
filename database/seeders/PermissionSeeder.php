@@ -23,58 +23,59 @@ class PermissionSeeder extends Seeder
 
         // create permissions
         $permissions = [
+            'hall_access',
+            'hall_create',
+            'hall_search',
 
-            'permission_access',
-            'permission_show',
-            'permission_grant',
-            'permission_revoke',
+            'movie_access',
+            'movie_nowshowing',
+            'movie_showuser',
+            'movie_create',
+            'movie_show',
+            'movie_update',
+            'movie_delete',
+            'movie_search',
 
-            'role_access',
-            'role_show',
-            'role_create',
-            'role_edit',
-            'role_delete',
-            'role_grant',
-            'role_revoke',
-
+            'user_info',
             'user_access',
-            'user_count',
-            'user_delete',
+            'user_create',
+            'user_show',
+            'user_update',
+            'user_updatepassword',
+            'user_deactivate',
+            'user_activate',
+            'user_search',
 
-
-            'project_access',
-            'project_show',
-            'project_create',
-            'project_edit',
-            'project_delete',
-            'project_search',
-            'project_reserve',
-
-
-            'requirment_show',
-            'requirment_create',
-            'requirment_edit',
-            'requirment_delete',
-
-            'srs_show',
-            'srs_create',
-            'srs_delete',
-
-            'task_index',
-            'task_search',
-            'task_show',
-            'task_create',
-            'task_edit',
-            'task_delete',
-            // 'task_reserve',
-            'task_done',
-            'task_assign',
-            'task_undone',
-
-
-            'comment_create',
-            'comment_delete',
+            'order_access',
+            'order_create',
+            'order_show',
+            'order_update',
+            //'order_destroy',
+            //'order_search',
             
+            'price_update',
+
+            'account_transfer',
+
+            'snack_access',
+            'snack_accessuser',
+            'snack_create',
+            'snack_show',
+            'snack_update',
+            'snack_deactivate',
+            'snack_activate',
+
+            'time_access',
+            'time_create',
+            'time_show',
+            'time_update',
+            'time_deactivate',
+            'time_activate',
+
+            'ticket_mytickets',
+            'ticket_create',
+            'ticket_steptwo',
+            'ticket_search',
         ];
 
         foreach ($permissions as $permission)   {
@@ -84,185 +85,146 @@ class PermissionSeeder extends Seeder
         }
 
         // gets all permissions via Gate::before rule; see AuthServiceProvider
-        $Maneger = Role::create(['name' => 'Maneger']);
+        $admin = Role::create(['name' => 'Admin']);
 
         // create permissions
         $permissions = [
+            'hall_access',
+            'hall_create',
+            'hall_search',
 
-            'permission_access',
-            'permission_show',
-            'permission_grant',
-            'permission_revoke',
+            'movie_access',
+            'movie_nowshowing',
+            'movie_showuser',
+            'movie_create',
+            'movie_show',
+            'movie_update',
+            'movie_delete',
+            'movie_search',
 
-            'role_access',
-            'role_show',
-            'role_create',
-            'role_edit',
-            'role_delete',
-            'role_grant',
-            'role_revoke',
-
+            'user_info',
             'user_access',
-            'user_count',
-            'user_delete',
+            'user_create',
+            'user_show',
+            'user_update',
+            'user_updatepassword',
+            'user_deactivate',
+            'user_activate',
+            'user_search',
 
-            'project_access',
-            'project_show',
-            'project_create',
-            'project_edit',
-            'project_delete',
-            'project_search',
-            'project_reserve',
+            'price_update',
 
-            'requirment_show',
-            'requirment_create',
-            'requirment_edit',
-            'requirment_delete',
+            'time_access',
+            'time_create',
+            'time_show',
+            'time_update',
+            'time_deactivate',
+            'time_activate',
 
-            'srs_show',
-            'srs_create',
-            'srs_delete',
-
-            'task_show',
-            'task_create',
-            'task_edit',
-            'task_delete',
-            // 'task_reserve',
-            'task_done',
-            'task_assign',
-            'task_undone',
-
-            'comment_create',
-            'comment_delete',
-            
+            'ticket_mytickets',
+            'ticket_create',
+            'ticket_steptwo',
+            'ticket_search',
         ];
 
-
         foreach ($permissions as $permission)   {
-            $Maneger->givePermissionTo($permission);
+            $admin->givePermissionTo($permission);
         }
 
-        $user1 = User::where('id' , 1)->first();
-        $user1->assignRole('Maneger');
+        $user1 = User::where('id',1)->first();
+        $user1->assignRole('Admin');
 
-        $Po = Role::create(['name' => 'Po']);
+        $Reception = Role::create(['name' => 'Reception']);
 
-        // create Po permissions
+        // create Reception permissions
         $permissions = [
-            'project_access',
-            'project_show',
-            'project_create',
-            'project_edit',
-            'project_delete',
-            'project_search',
-            'project_reserve',
+            'movie_access',
+            'movie_nowshowing',
+            'movie_showuser',
+            'movie_create',
+            'movie_show',
+            'movie_update',
+            'movie_delete',
+            'movie_search',
 
-
-            'requirment_show',
-            'requirment_create',
-            'requirment_edit',
-            'requirment_delete',
-
-            'srs_show',
-            'srs_create',
-            'srs_delete',
-
-
-            'task_show',
-
-            'comment_create',
-            'comment_delete',
+            'user_info',
+            'user_update',
+            'user_updatepassword',
         ];
 
-
         foreach ($permissions as $permission)   {
-            $Po->givePermissionTo($permission);
+            $Reception->givePermissionTo($permission);
         }
 
-        $TeamLeader = Role::create(['name' => 'TeamLeader']);
+        $Vendor = Role::create(['name' => 'Vendor']);
 
-        // create TeamLeader permissions
+        // create Vendor permissions
         $permissions = [
-            'project_access',
-            'project_search',
-            'project_show',
-            'project_reserve',
+            'user_info',
+            'user_update',
+            'user_updatepassword',
 
-            'requirment_show',
+            'order_access',
+            // 'order_myorder',
+            'order_create',
+            'order_show',
+            'order_update',
+            //'order_destroy',
+            //'order_search',
 
-            'task_show',
-            'task_create',
-            'task_edit',
-            'task_delete',
-            // 'task_reserve',
-            'task_assign',
-            'task_undone',
-            'task_done',
-
-            'srs_show',
-
-            'comment_create',
-            'comment_delete',
+            'snack_access',
+            'snack_accessuser',
+            'snack_create',
+            'snack_show',
+            'snack_update',
+            'snack_deactivate',
+            'snack_activate',
         ];
+
         foreach ($permissions as $permission)   {
-            $TeamLeader->givePermissionTo($permission);
+            $Vendor->givePermissionTo($permission);
         }
 
+        $Distributor = Role::create(['name' => 'Distributor']);
 
-        $Developer = Role::create(['name' => 'Developer']);
-
-        // create Developer permissions
+        // create Vendor permissions
         $permissions = [
-            'project_access',
-            'project_search',
-            'project_show',
-
-            'requirment_show',
-
-            'task_show',
-            // 'task_reserve',
-            'task_done',
-            
-            'srs_show',
-
-            'comment_create',
-            'comment_delete',
+            'user_info',
+            'user_update',
+            'user_updatepassword',
+            'account_transfer'
         ];
 
         foreach ($permissions as $permission)   {
-            $Developer->givePermissionTo($permission);
+            $Distributor->givePermissionTo($permission);
         }
 
-        // $user = Role::create(['name' => 'User']);
 
-        // foreach ($permissions as $permission)   {
-        //     $Maneger->givePermissionTo($permission);
-        // }
+        $User = Role::create(['name' => 'User']);
 
-        // $user1 = User::where('id' , 1)->first();
-        // $user1->assignRole('Super Admin');
+        // create User permissions
+        $permissions = [
+            'user_info',
+            'user_update',
+            'user_updatepassword',
 
-        // foreach ($permissions as $permission)   {
-        //     $user1->givePermissionTo($permission);
-        // }
+            'ticket_mytickets',
+            'ticket_create',
+            'ticket_steptwo',
+            'ticket_search',
 
+            // 'order_myorder',
+            'order_create',
+            'order_show',
+            'order_update',
+            //'order_destroy',
+            //'order_search',
 
-        // $userPermissions = [
-        //     'ingredient_create',
-        //     'meal_create',
-        //     'meal_edit',
-        //     'meal_show',
-        //     'meal_delete',
-        //     'meal_access',
-        //     'comment_create',
-        //     'comment_edit',
-        //     'comment_show',
-        //     'comment_delete',
-        //     'comment_access',
-        // ];
+            'snack_accessuser',
+        ];
 
-        // foreach ($userPermissions as $permission)   {
-        //     $user->givePermissionTo($permission);
-        // }
+        foreach ($permissions as $permission)   {
+            $User->givePermissionTo($permission);
+        }
     }
 }
