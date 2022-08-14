@@ -16,16 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            PermissionSeeder::class,
             HallSeeder::class,
             MovieSeeder::class,
-            // SeatSeeder::class,
+            SeatSeeder::class,
             PriceSeeder::class,
-            // TicketSeeder::class,
             TimeSeeder::class,
             GenreSeeder::class,
             SnackSeeder::class,
-            PermissionSeeder::class,
-            OrderSeeder::class,
         ]);
     }
 }

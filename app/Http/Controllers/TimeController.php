@@ -41,17 +41,6 @@ class TimeController extends BaseController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Time  $time
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Time $time)
-    {
-        return $this->sendResponse(new TimeResource($time),'Time shown sussesfully');
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateTimeRequest  $request
@@ -67,12 +56,24 @@ class TimeController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Time  $time
+     * @param  \App\Models\Starttime  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Time $time)
+    public function deactivate(Starttime $starttime)
     {
-        $time->delete();
-        return $this->sendResponse(new TimeResource($time),'Time deleted sussesfully');
+        $starttime->update(['active'=>false]);
+        return $this->sendResponse(new TimeResource($time),'Time deactivate sussesfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Starttime  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function activate(Starttime $starttime)
+    {
+        $starttime->update(['active'=>true]);
+        return $this->sendResponse(new TimeResource($time),'Time activated sussesfully');
     }
 }

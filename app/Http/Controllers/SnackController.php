@@ -6,6 +6,7 @@ use App\Http\Resources\SnackResource;
 use App\Models\Snack;
 use App\Http\Requests\StoreSnackRequest;
 use App\Http\Requests\UpdateSnackRequest;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SnackController extends BaseController
 {
@@ -28,6 +29,13 @@ class SnackController extends BaseController
         return $this->sendResponse(SnackResource::collection($snacks)->response()->getData(true),'Snacks sent sussesfully');
     }
 
+
+    public function indexuser()
+    {
+        $snacks = Snack::where('active',1)->paginate(3);
+        return $this->sendResponse(SnackResource::collection($snacks)->response()->getData(true),'Snacks sent sussesfully');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,8 +44,12 @@ class SnackController extends BaseController
      */
     public function store(StoreSnackRequest $request)
     {
-        $snack = Snack::create($request->validated());
-        return $this->sendResponse(new SnackResource($snack ),'Snack created sussesfully');
+        $image = $request->file('image');
+        $imgname=time().$image->getClientOriginalName();
+        $img = Image::make($request->image);
+        $img->save('upload/Imgs/'.$imgname,100,'jpg');
+        $snack=Snack::create($request->except('image') + ['image'=>'upload/Imgs/'.$imgname]);
+        return $this->sendResponse(new SnackResource($snack),'Snack created sussesfully');
     }
 
     /**
@@ -60,7 +72,14 @@ class SnackController extends BaseController
      */
     public function update(UpdateSnackRequest $request, Snack $snack)
     {
-        $snack->update($request->validated());
+        try{
+            unlink(public_path($movie->image));
+        }catch(\Exception $e){} 
+
+        $imgname=time().$request->image->getClientOriginalName();
+        $img = Image::make($request->image);
+        $img->save('upload/Imgs/'.$imgname,100,'jpg');
+        $snack->update($request->except('image') + ['image'=>'upload/Imgs/'.$imgname]);
         return $this->sendResponse(new SnackResource($snack),'Snack updated sussesfully');
     }
 
@@ -70,9 +89,21 @@ class SnackController extends BaseController
      * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Snack $snack)
+    public function deactivate(Snack $snack)
     {
-        $snack->delete();
-        return $this->sendResponse(new SnackResource($snack),'Snack deleted sussesfully');
+        $snack->update(['active'=>false]);
+        return $this->sendResponse(new SnackResource($snack),'Snack deactivated sussesfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Snack  $snack
+     * @return \Illuminate\Http\Response
+     */
+    public function activate(Snack $snack)
+    {
+        $snack->update(['active'=>true]);
+        return $this->sendResponse(new SnackResource($snack),'Snack activated sussesfully');
     }
 }

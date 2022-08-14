@@ -22,23 +22,23 @@ class InvoiceController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function myinvoices()
     {
-        $invoices = Invoice::paginate($this->paginate);
+        $invoices = Invoice::where('user_id',auth()->user()->id)->paginate($this->paginate);
         return $this->sendResponse(InvoiceResource::collection($invoices)->response()->getData(true),'Invoices sent sussesfully');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreInvoiceRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreInvoiceRequest $request)
-    {
-        $invoice = Invoice::create($request->validated());
-        return $this->sendResponse(new InvoiceResource($invoice),'Invoice created sussesfully');
-    }
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \App\Http\Requests\StoreInvoiceRequest  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(StoreInvoiceRequest $request)
+    // {
+    //     $invoice = Invoice::create($request->validated());
+    //     return $this->sendResponse(new InvoiceResource($invoice),'Invoice created sussesfully');
+    // }
 
     /**
      * Display the specified resource.

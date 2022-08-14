@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TicketResource;
-use App\Models\Ticket;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Http\Resources\TicketResource;
+use App\Models\Movie;
+use App\Models\Ticket;
 
 class TicketController extends BaseController
 {
@@ -18,26 +19,48 @@ class TicketController extends BaseController
     }
 
     /**
-     * Display a listing of the resource.
+     * Store a newly created resource in storage.
      *
+     * @param  \App\Http\Requests\StoreTicketRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function stepOne(StoreTicketRequest $request,Movie $movie)
     {
-        $tickets = Ticket::paginate($this->paginate);
-        return $this->sendResponse(TicketResource::collection($tickets)->response()->getData(true),'Tickets sent sussesfully');
+        return $this->sendResponse(new MovieResource($movie->load(['Times','Hall'])),'step one created sussesfully');
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTicketRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTicketRequest $request)
+    public function stepTwo(StoreTicketRequest $request,Movie $movie)
     {
+        $hall=$request->hall_id;
+        $date=$request->date;
+        $st=$request->starttime;
+        $movie=$request->movie_id;
+        $glass=$request->glasses;
+        $availableseates=$movie1->Hall->seats->where('available',1);
         $ticket = Ticket::create($request->validated());
-        return $this->sendResponse(new TicketResource($ticket ),'Ticket created sussesfully');
+        return $this->sendResponse(new TicketResource($ticket),'Ticket created sussesfully');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreTicketRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreTicketRequest $request,Movie $movie)
+    {
+        $hall=$request->hall_id;
+        $date=$request->date;
+        $st=$request->starttime;
+        $movie=$request->movie_id;
+        $glass=$request->glasses;
+        $availableseates=$movie1->Hall->seats->where('available',1);
+        $ticket = Ticket::create($request->validated());
+        return $this->sendResponse(new TicketResource($ticket),'Ticket created sussesfully');
     }
 
     /**

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
-class StoreHallRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,8 @@ class StoreHallRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'   => ['string','required'],
+            'oldpassword'=> ['required'],
+            'newpassword'=> ['required', 'confirmed', Rules\Password::defaults()],
         ];
     }
 }

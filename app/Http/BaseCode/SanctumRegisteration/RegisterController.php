@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\User;
+use Str;
 
 class RegisterController extends BaseController
 {
@@ -21,17 +22,24 @@ class RegisterController extends BaseController
     public function register(RegisterRequest $request)
     {
         $input=$request->validated();
-        
+        $image = $request->file('id_img');
+        $imgname=time().$image->getClientOriginalName();
+        $img = Image::make($request->id_img);
+        $img->save('upload/Imgs/'.$imgname,100,'jpg');
         $user = User::create([
                 'name'     => $request->name,
                 'email'    => $request->email,
                 'password' => Hash::make($request->password),
+                'phone'    => $request->phone,
+                'id_img'   => 'upload/Imgs/'.$imgname,
             ]);
 
-        $user->assignRole($request->role);
+        $user->Account->cereate([
+            'code'     => Str::random(6),
+            'points'     => 0.00,
+        ]);
+        $user->assignRole('User');
 
-        $token['token']=$user->createtoken('task,project')->plainTextToken;
-        
         return $this->sendResponse(new UserResource($user),'user regsterd successfully');
     }
 
@@ -52,7 +60,7 @@ class RegisterController extends BaseController
             return $this->sendError('Incorrect password');
         }
 
-        $token['token']=$user->createtoken('office,project')->plainTextToken;
+        $token['token']=$user->createtoken('cinema,project')->plainTextToken;
 
         $response=[
             'user'=>$user,

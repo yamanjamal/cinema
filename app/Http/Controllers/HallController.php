@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HallResource;
-use App\Models\Hall;
 use App\Http\Requests\StoreHallRequest;
 use App\Http\Requests\UpdateHallRequest;
+use App\Http\Resources\HallResource;
+use App\Models\Hall;
+use App\Services\Fillseats;
 
 class HallController extends BaseController
 {
@@ -37,42 +38,8 @@ class HallController extends BaseController
     public function store(StoreHallRequest $request)
     {
         $hall = Hall::create($request->validated());
+        $Service = new Fillseats();
+        $Service->fillseat($hall->id);
         return $this->sendResponse(new HallResource($hall ),'Hall created sussesfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Hall  $hall
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Hall $hall)
-    {
-        return $this->sendResponse(new HallResource($hall),'Hall shown sussesfully');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateHallRequest  $request
-     * @param  \App\Models\Hall  $hall
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateHallRequest $request, Hall $hall)
-    {
-        $hall->update($request->validated());
-        return $this->sendResponse(new HallResource($hall),'Hall updated sussesfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Hall  $hall
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Hall $hall)
-    {
-        $hall->delete();
-        return $this->sendResponse(new HallResource($hall),'Hall deleted sussesfully');
     }
 }

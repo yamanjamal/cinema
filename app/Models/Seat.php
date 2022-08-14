@@ -13,8 +13,6 @@ class Seat extends Model
         'hall_id',
         'available',
         'code',
-        'data',
-        'time',
     ];
 
     public function Hall(){

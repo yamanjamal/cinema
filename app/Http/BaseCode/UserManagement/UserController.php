@@ -15,10 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends BaseController
 {
 
-    public function __construct()
-    {
-        $this->authorizeResource(User::class, 'user');
-    }
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(User::class, 'user');
+    // }
     
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users =User::with('roles')->where('id','!=',1)->get();
+        $users =User::with('roles.permissions')->where('id','!=',1)->get();
         return $this->sendResponse(UserResource::collection($users),'Users sent sussesfully');
     }
 
@@ -41,26 +41,46 @@ class UserController extends BaseController
         $this->authorize('count', User::class);
         return User::count();
     }
+
     /**
-     * Display a listing of the resource.
+     * Remove the specified resource from storage.
      *
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function info()
+    public function deactivate(User $user)
     {
-        $user = User::with('roles.permissions')->where('id',auth()->user()->id)->get();
-        return $this->sendResponse(UserResource::collection($users),'User info sent sussesfully');
+        $user->update(['active'=>false]);
+        return $this->sendResponse(new UserResource($user),'user deactivate sussesfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function activate(User $user)
     {
-        $user->delete();
-        return $this->sendResponse(new UserResource($user),'User deleted sussesfully');
+        $user->update(['active'=>true]);
+        return $this->sendResponse(new UserResource($user),'user activated sussesfully');
+    }
+
+    /**
+     * [search description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function search(Request $request)
+    {
+        $users= User::
+        when($request->keyword,function($query) use($request){
+            $query->where('name','like',"{$request->keyword}%");
+        })
+        ->when($request->role,function($query) use($request){
+            $query->where('role',$request->role);
+        })
+        ->paginate(5);
+        return $this->sendResponse(UserResource::collection($users),'Users sent sussesfully');
     }
 }

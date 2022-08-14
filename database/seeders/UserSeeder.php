@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
             'id_img'=>'img/5.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        // $admin->assignRole('Admin');
 
         $reseption = User::create([
             'name' => 'reseption',
@@ -33,7 +32,6 @@ class UserSeeder extends Seeder
             'id_img'=>'img/10.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        // $reseption->assignRole('Reseption');
 
         $vendor = User::create([
             'name' => 'vendor',
@@ -43,6 +41,15 @@ class UserSeeder extends Seeder
             'id_img'=>'img/9.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
-        // $vendor->assignRole('Vendor');
+
+
+        $distributor = User::create([
+            'name' => 'distributor',
+            'email' => 'distributor@distributor.com',
+            'phone' => '0988025806',
+            'email_verified_at' => now(),
+            'id_img'=>'img/9.jpg',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ]);
     }
 }

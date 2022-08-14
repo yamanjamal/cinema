@@ -18,37 +18,16 @@ class PriceController extends BaseController
     }
 
     /**
-     * Display a listing of the resource.
+     * Update the specified resource in storage.
      *
+     * @param  \App\Http\Requests\UpdatePriceRequest  $request
+     * @param  \App\Models\Price  $price
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $prices = Price::paginate($this->paginate);
-        return $this->sendResponse(PriceResource::collection($prices)->response()->getData(true),'Prices sent sussesfully');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePriceRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePriceRequest $request)
-    {
-        $price = Price::create($request->validated());
-        return $this->sendResponse(new PriceResource($price ),'Price created sussesfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Price  $price
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Price $price)
-    {
-        return $this->sendResponse(new PriceResource($price),'Price shown sussesfully');
+        $Price = Price::paginate($this->paginate);
+        return $this->sendResponse(PriceResource::collection($Price)->response()->getData(true),'Price sent sussesfully');
     }
 
     /**
@@ -62,17 +41,5 @@ class PriceController extends BaseController
     {
         $price->update($request->validated());
         return $this->sendResponse(new PriceResource($price),'Price updated sussesfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Price  $price
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Price $price)
-    {
-        $price->delete();
-        return $this->sendResponse(new PriceResource($price),'Price deleted sussesfully');
     }
 }
