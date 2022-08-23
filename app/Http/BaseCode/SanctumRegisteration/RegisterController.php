@@ -14,6 +14,12 @@ use Str;
 
 class RegisterController extends BaseController
 {
+    /**
+     * [register description]
+     * @param  RegisterRequest $request     [description]
+     * @param       [description]
+     * @return [type]                       [description]
+     */
     public function register(RegisterRequest $request)
     {
         $input=$request->validated();
