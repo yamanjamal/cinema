@@ -23,6 +23,20 @@ class PermissionSeeder extends Seeder
 
         // create permissions
         $permissions = [
+            'role_access',
+            'role_show',
+            'role_create',
+            'role_edit',
+            'role_delete',
+            'role_grant',
+            'role_revoke',
+
+            'permission_access',
+            'permission_show',
+            'permission_grant',
+            'permission_revoke',
+
+
             'hall_access',
             'hall_create',
             'hall_search',
@@ -89,6 +103,19 @@ class PermissionSeeder extends Seeder
 
         // create permissions
         $permissions = [
+            'role_access',
+            'role_show',
+            'role_create',
+            'role_edit',
+            'role_delete',
+            'role_grant',
+            'role_revoke',
+
+            'permission_access',
+            'permission_show',
+            'permission_grant',
+            'permission_revoke',
+            
             'hall_access',
             'hall_create',
             'hall_search',
@@ -146,7 +173,6 @@ class PermissionSeeder extends Seeder
             'movie_update',
             'movie_delete',
             'movie_search',
-
             'user_info',
             'user_update',
             'user_updatepassword',

@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         $vendor = User::create([
             'name' => 'vendor',
             'email' => 'vendor@vendor.com',
-            'phone' => '0988025806',
+            'phone' => '0988025804',
             'email_verified_at' => now(),
             'id_img'=>'img/9.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

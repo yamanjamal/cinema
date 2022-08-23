@@ -41,7 +41,6 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         
     // +++++++++++++++++++++++++++++++start Registerations api+++++++++++++++++++++++++
     Route::group(['prefix' => 'User','controller'=>RegisterController::class], function() {
-        Route::post('/register',               'register');
         Route::get('/logout',                  'logout');
     });
     // +++++++++++++++++++++++++++++++end Registerations api+++++++++++++++++++++++++++
@@ -49,3 +48,4 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
 });
 
 Route::post('/login',             [RegisterController::class,'login']);
+Route::post('/register',          [RegisterController::class,'register']);

@@ -6,9 +6,10 @@ use App\Http\Controllers\BaseController;
 use App\Http\Requests\SanctumRegister\LoginRequest;
 use App\Http\Requests\SanctumRegister\RegisterRequest;
 use App\Http\Resources\UserResource;
+use App\Models\Account;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Models\User;
 use Str;
 
 class RegisterController extends BaseController
@@ -33,14 +34,14 @@ class RegisterController extends BaseController
                 'phone'    => $request->phone,
                 'id_img'   => 'upload/Imgs/'.$imgname,
             ]);
-
-        $user->Account->cereate([
+        $account = Account::create([
             'code'     => Str::random(6),
+            'user_id'     => $user->id,
             'points'     => 0.00,
         ]);
         $user->assignRole('User');
 
-        return $this->sendResponse(new UserResource($user),'user regsterd successfully');
+        return $this->sendResponse(new UserResource($user->load('Account')),'user registerd successfully');
     }
 
     /**
@@ -77,6 +78,6 @@ class RegisterController extends BaseController
     public function logout(){
        
         auth()->user()->tokens()->delete();
-        return ['message'=>'logged out'];
+         return response()->json(['message' => 'logged out'], 200);
     }
 }

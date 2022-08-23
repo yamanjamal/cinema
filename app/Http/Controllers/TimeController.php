@@ -17,7 +17,7 @@ class TimeController extends BaseController
         $this->authorizeResource(Time::class,'time');
     }
 
-    /**
+    /
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +28,7 @@ class TimeController extends BaseController
         return $this->sendResponse(TimeResource::collection($times)->response()->getData(true),'Times sent sussesfully');
     }
 
-    /**
+    /
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTimeRequest  $request
@@ -40,7 +40,7 @@ class TimeController extends BaseController
         return $this->sendResponse(new TimeResource($time ),'Time created sussesfully');
     }
 
-    /**
+    /
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateTimeRequest  $request
@@ -53,27 +53,27 @@ class TimeController extends BaseController
         return $this->sendResponse(new TimeResource($time),'Time updated sussesfully');
     }
 
-    /**
+    /
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Starttime  $user
+     * @param  \App\Models\time  $user
      * @return \Illuminate\Http\Response
      */
-    public function deactivate(Starttime $starttime)
+    public function deactivate(Time $time)
     {
-        $starttime->update(['active'=>false]);
+        $time->update(['active'=>false]);
         return $this->sendResponse(new TimeResource($time),'Time deactivate sussesfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Starttime  $user
+     * @param  \App\Models\time  $user
      * @return \Illuminate\Http\Response
      */
-    public function activate(Starttime $starttime)
+    public function activate(Time $time)
     {
-        $starttime->update(['active'=>true]);
+        $time->update(['active'=>true]);
         return $this->sendResponse(new TimeResource($time),'Time activated sussesfully');
     }
 }
