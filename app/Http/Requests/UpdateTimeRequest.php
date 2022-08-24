@@ -28,5 +28,4 @@ class UpdateTimeRequest extends FormRequest
             'endtime'    =>['string','required'],
         ];
     }
-    }
 }
