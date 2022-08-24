@@ -28,6 +28,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     Route::group(['prefix' => 'Time','controller'=>TimeController::class], function() {
         Route::get('/index',                          'index');
         Route::post('/store',                          'store');
+        Route::get('/{time}/edit',                      'edit');
         Route::put('/update/{time}',                   'update');
         Route::get('/activate/{time}',                 'activate');
         Route::get('/deactivate/{time}',               'deactivate');

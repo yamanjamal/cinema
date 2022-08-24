@@ -38,6 +38,18 @@ class TimeController extends BaseController
      * @param  \App\Models\Time  $time
      * @return \Illuminate\Http\Response
      */
+    public function edit(Time $time)
+    {
+        return $this->sendResponse(new TimeResource($time),'Time sent sussesfully');
+    }
+
+    /*
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateTimeRequest  $request
+     * @param  \App\Models\Time  $time
+     * @return \Illuminate\Http\Response
+     */
     public function update(UpdateTimeRequest $request, Time $time)
     {
         $time->update($request->validated());
