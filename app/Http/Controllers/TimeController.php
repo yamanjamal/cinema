@@ -17,30 +17,21 @@ class TimeController extends BaseController
         $this->authorizeResource(Time::class,'time');
     }
 
-    /
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         $times = Time::paginate($this->paginate);
         return $this->sendResponse(TimeResource::collection($times)->response()->getData(true),'Times sent sussesfully');
     }
 
-    /
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTimeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(StoreTimeRequest $request)
     {
         $time = Time::create($request->validated());
         return $this->sendResponse(new TimeResource($time ),'Time created sussesfully');
     }
 
-    /
+    /*
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateTimeRequest  $request
@@ -53,7 +44,7 @@ class TimeController extends BaseController
         return $this->sendResponse(new TimeResource($time),'Time updated sussesfully');
     }
 
-    /
+    /*
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\time  $user
