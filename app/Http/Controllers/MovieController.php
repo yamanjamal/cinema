@@ -25,7 +25,7 @@ class MovieController extends BaseController
      */
     public function index()
     {
-        $movies = Movie::with('Genres')->paginate($this->paginate);
+        $movies = Movie::with('Genres','Hall')->paginate($this->paginate);
         return $this->sendResponse(MovieResource::collection($movies)->response()->getData(true),'Movies sent sussesfully');
     }
 
