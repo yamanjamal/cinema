@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MovieResource;
+use App\Models\Hall;
+use App\Models\Genre;
 use App\Models\Movie;
+use App\Http\Resources\MovieResource;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Time;
 
 class MovieController extends BaseController
 {
@@ -25,8 +28,21 @@ class MovieController extends BaseController
      */
     public function index()
     {
-        $movies = Movie::with('Genres','Hall')->paginate($this->paginate);
+        $movies = Movie::with(['Genres','Hall'])->paginate($this->paginate);
         return $this->sendResponse(MovieResource::collection($movies)->response()->getData(true),'Movies sent sussesfully');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $halls =Hall::all();
+        $genres =Genre::all();
+        $times =Time::all();
+        return $this->sendResponse(['halls'=>$halls, 'genres' => $genres, 'times' => $times],'data sent sussesfully');
     }
 
     /**
@@ -65,9 +81,26 @@ class MovieController extends BaseController
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
+    public function edit(Movie $movie)
+    {
+        $halls  = Hall::all();
+        $genres = Genre::all();
+        $movie_genres = $movie->Genres;
+        $times =Time::all();
+        $movie_times = $movie->Times;
+        return $this->sendResponse(['halls'=>$halls, 'genres' => $genres,  'movie_times' => $movie_times, 'times' => $times,  'movie_genres' => $movie_genres],'Movie updated sussesfully');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateMovieRequest  $request
+     * @param  \App\Models\Movie  $movie
+     * @return \Illuminate\Http\Response
+     */
     public function update(UpdateMovieRequest $request, Movie $movie)
     {
-         try{
+        try{
             unlink(public_path($movie->image));
         }catch(\Exception $e){}
         $imgname=time().$request->image->getClientOriginalName();

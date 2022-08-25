@@ -26,8 +26,8 @@ class PriceController extends BaseController
      */
     public function index()
     {
-        $Price = Price::paginate($this->paginate);
-        return $this->sendResponse(PriceResource::collection($Price)->response()->getData(true),'Price sent sussesfully');
+        $Price = Price::first();
+        return $this->sendResponse(new PriceResource($Price),'Price sent sussesfully');
     }
 
     /**

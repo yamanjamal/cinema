@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TimeController;
-use App\Http\Controllers\MovieController;
 use App\Http\Controllers\HallController;
+use App\Http\Controllers\TimeController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProjectController;
 
 
@@ -50,14 +51,23 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
      // +++++++++++++++++++++++++++++++start Movie api++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'Movie','controller'=>MovieController::class], function() {
         Route::get('/',                    'index');
+        Route::get('/create',              'create');
         Route::post('/',                   'store');
         Route::put('/{movie}',             'show');
+        Route::get('/{movie}/edit',        'edit');
         Route::put('/{movie}',           'update');
         Route::get('/{movie}',          'destroy');
-        Route::post('/search',                   'search');
+        Route::get('/search',           'search');
     });
-    
     // +++++++++++++++++++++++++++++++end Movie api++++++++++++++++++++++++++++++++++
+
+
+    // +++++++++++++++++++++++++++++++start Price api++++++++++++++++++++++++++++++++
+    Route::group(['prefix' => 'Price', 'controller' => PriceController::class], function() {
+        Route::get('/',                    'index');
+        Route::put('/{price}',           'update');
+    });
+    // +++++++++++++++++++++++++++++++end Price api++++++++++++++++++++++++++++++++++
     Route::apiresource('tasks',          TaskController::class);
 });
 

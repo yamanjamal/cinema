@@ -35,7 +35,9 @@ class PermissionSeeder extends Seeder
             'permission_show',
             'permission_grant',
             'permission_revoke',
-
+            
+            'price_access',
+            'price_update',
 
             'hall_access',
             'hall_create',
@@ -67,8 +69,6 @@ class PermissionSeeder extends Seeder
             //'order_destroy',
             //'order_search',
             
-            'price_update',
-
             'account_transfer',
 
             'snack_access',
@@ -119,6 +119,9 @@ class PermissionSeeder extends Seeder
             'hall_access',
             'hall_create',
             'hall_search',
+
+            'price_access',
+            'price_update',
 
             'movie_access',
             'movie_nowshowing',
