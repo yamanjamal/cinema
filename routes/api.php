@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TimeController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\HallController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProjectController;
 
 
@@ -24,25 +27,33 @@ use App\Http\Controllers\ProjectController;
 
 Route::group(['middleware'=>'auth:sanctum'], function() {
     
-    // +++++++++++++++++++++++++++++++start Time api++++++++++++++++++++++++++++++++
-    Route::group(['prefix' => 'Time','controller'=>TimeController::class], function() {
-        Route::get('/index',                          'index');
-        Route::post('/store',                          'store');
-        Route::get('/{time}/edit',                      'edit');
-        Route::put('/update/{time}',                   'update');
-        Route::get('/activate/{time}',                 'activate');
-        Route::get('/deactivate/{time}',               'deactivate');
+    // +++++++++++++++++++++++++++++++start Hall api++++++++++++++++++++++++++++++++
+    Route::group(['prefix' => 'Hall','controller'=>HallController::class], function() {
+        Route::get('/',                          'index');
+        Route::post('/',                          'store');
+    });
+    
+    // +++++++++++++++++++++++++++++++end Hall api++++++++++++++++++++++++++++++++++
+
+     // +++++++++++++++++++++++++++++++start Time api++++++++++++++++++++++++++++++++
+     Route::group(['prefix' => 'Time','controller'=>TimeController::class], function() {
+        Route::get('/',                          'index');
+        Route::post('/',                          'store');
+        Route::get('/{time}',                      'edit');
+        Route::put('/{time}',                   'update');
+        Route::get('activate/{time}',                 'activate');
+        Route::get('deactivate/{time}',               'deactivate');
     });
     
     // +++++++++++++++++++++++++++++++end Time api++++++++++++++++++++++++++++++++++
 
      // +++++++++++++++++++++++++++++++start Movie api++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'Movie','controller'=>MovieController::class], function() {
-        Route::get('/index',                    'index');
-        Route::post('/store',                   'store');
-        Route::put('/show/{movie}',             'show');
-        Route::put('/update/{movie}',           'update');
-        Route::get('/destroy/{movie}',          'destroy');
+        Route::get('/',                    'index');
+        Route::post('/',                   'store');
+        Route::put('/{movie}',             'show');
+        Route::put('/{movie}',           'update');
+        Route::get('/{movie}',          'destroy');
         Route::post('/search',                   'search');
     });
     
