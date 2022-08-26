@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ChangePasswordRequest;
-use App\Http\Requests\UpdateProfileRequest;
-use App\Models\Ticket;
 use App\Models\User;
+use App\Models\Ticket;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\TicketResource;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\ChangePasswordRequest;
 
-class profilecontroller extends Controller
+class profilecontroller extends BaseController
 {
 
     public function info()
     {
         $user =auth()->user();
-        return $this->sendResponse(new UserResource($user),'user info sussesfully');
+        return $this->sendResponse(new UserResource($user->load(['roles.permissions'])),'user info sussesfully');
     }
 
     public function mytickets()

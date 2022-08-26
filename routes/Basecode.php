@@ -34,15 +34,17 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     // +++++++++++++++++++++++++++++++end Permission api+++++++++++++++++++++++++++++++
 
     // +++++++++++++++++++++++++++++++start UserManegment api++++++++++++++++++++++++++
-    Route::get('users/count',               [UserController::class,'count']);
-    Route::apiresource('users',             UserController::class)->except('show','update','store');
+    Route::group(['prefix' => 'User', 'controller' => UserController::class], function() {
+        Route::get('/',                 'index');
+        Route::get('/count',            'count');
+        Route::put('/deactivate/{user}','deactivate');
+        Route::put('/activate/{user}',  'activate');
+        Route::get('/search',           'search');
+    });
     // +++++++++++++++++++++++++++++++end UserManegment api++++++++++++++++++++++++++++
-
         
     // +++++++++++++++++++++++++++++++start Registerations api+++++++++++++++++++++++++
-    Route::group(['prefix' => 'User','controller'=>RegisterController::class], function() {
-        Route::get('/logout',                  'logout');
-    });
+    Route::get('User/logout',                 [ RegisterController::class,'logout']);
     // +++++++++++++++++++++++++++++++end Registerations api+++++++++++++++++++++++++++
 
 });

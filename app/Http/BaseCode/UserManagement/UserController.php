@@ -4,6 +4,7 @@ namespace App\Http\BaseCode\UserManagement;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ChangeRollRequest;
+use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Notifications\ActionNotification;
@@ -14,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends BaseController
 {
-
     // public function __construct()
     // {
     //     $this->authorizeResource(User::class, 'user');
@@ -27,7 +27,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $users =User::with('roles.permissions')->where('id','!=',1)->get();
+        $users = User::with('roles.permissions')->where('id','!=',1)->get();
         return $this->sendResponse(UserResource::collection($users),'Users sent sussesfully');
     }
 
@@ -38,7 +38,7 @@ class UserController extends BaseController
      */
     public function count()
     {
-        $this->authorize('count', User::class);
+        // $this->authorize('count', User::class);
         return User::count();
     }
 
@@ -76,9 +76,6 @@ class UserController extends BaseController
         $users= User::
         when($request->keyword,function($query) use($request){
             $query->where('name','like',"{$request->keyword}%");
-        })
-        ->when($request->role,function($query) use($request){
-            $query->where('role',$request->role);
         })
         ->paginate(5);
         return $this->sendResponse(UserResource::collection($users),'Users sent sussesfully');
