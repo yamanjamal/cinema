@@ -57,9 +57,10 @@ class MovieController extends BaseController
         $imgname=time().$image->getClientOriginalName();
         $img = Image::make($request->image);
         $img->save('upload/Imgs/'.$imgname,100,'jpg');
+
         $movie=Movie::create($request->except('image') + ['image'=>'upload/Imgs/'.$imgname]);
         $movie->Genres()->attach($request->genres);
-        $movie->Times()->attach($request->Times);
+        $movie->Times()->attach($request->times);
         return $this->sendResponse(new MovieResource($movie),'Movie created sussesfully');
     }
 
