@@ -19,7 +19,7 @@ class RoleController extends BaseController
     public function index()
     {
         abort_if(Gate::denies('role_access'), 403);
-        $roles =Role::all();
+        $roles =Role::where('id','!=',1)->get();
         return $this->sendResponse(RoleResource::collection($roles),'Roles sent sussesfully');
     }
 

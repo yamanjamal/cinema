@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hall;
+use App\Models\Time;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Price;
 use App\Http\Resources\MovieResource;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Models\Time;
 
 class MovieController extends BaseController
 {
@@ -128,14 +129,10 @@ class MovieController extends BaseController
         $movie->delete();
         return $this->sendResponse(new MovieResource($movie),'Movie deleted sussesfully');
     }
-    
-    /**
-     * [search description]
-     * @param  Request $request [description]
-     * @return [type]           [description]
-     */
+
     public function search(Request $request)
     {
+        return 's';
         // $prices = Price::all();
         // $genres=Genre::all();
         // $movies= Movie::with('Genres')
@@ -151,6 +148,6 @@ class MovieController extends BaseController
         //     });
         // })
         // ->paginate(5);
-        // return view('Admin.Movie.index-movie',compact('movies','prices','genres'));
+        // return $this->sendResponse(['movies' => $movies, 'genres' => $genres],'Movie deleted sussesfully');
     }
 }
