@@ -27,7 +27,7 @@ class PermissionSeeder extends Seeder
             'role_show',
             'role_create',
             'role_edit',
-            'role_delete',
+            'role_destroy',
             'role_grant',
             'role_revoke',
 
@@ -49,7 +49,7 @@ class PermissionSeeder extends Seeder
             'movie_create',
             'movie_show',
             'movie_update',
-            'movie_delete',
+            'movie_destroy',
             'movie_search',
 
             'user_info',
@@ -107,7 +107,7 @@ class PermissionSeeder extends Seeder
             'role_show',
             'role_create',
             'role_edit',
-            'role_delete',
+            'role_destroy',
             'role_grant',
             'role_revoke',
 
@@ -129,7 +129,7 @@ class PermissionSeeder extends Seeder
             'movie_create',
             'movie_show',
             'movie_update',
-            'movie_delete',
+            'movie_destroy',
             'movie_search',
 
             'user_info',
@@ -174,7 +174,7 @@ class PermissionSeeder extends Seeder
             'movie_create',
             'movie_show',
             'movie_update',
-            'movie_delete',
+            'movie_destroy',
             'movie_search',
             'user_info',
             'user_update',

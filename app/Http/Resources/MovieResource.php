@@ -27,7 +27,7 @@ class MovieResource extends JsonResource
             'hall'          => new HallResource($this->whenloaded('Hall')),
             'tickets'       => TicketResource::collection($this->whenloaded('Tickets')),
             'genres'        => GenreResource::collection($this->whenloaded('Genres')),
-            'tiems'         => TimeResource::collection($this->whenloaded('Times')),
+            'times'         => TimeResource::collection($this->whenloaded('Times')),
         ];
     }
 }

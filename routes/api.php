@@ -38,7 +38,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::put('/{movie}',             'show');
         Route::get('/{movie}/edit',        'edit');
         Route::put('/{movie}',           'update');
-        Route::get('/{movie}',           'destroy');
+        Route::delete('/{movie}',         'destroy');
         Route::get('/search',            'search');
     });
     // +++++++++++++++++++++++++++++++end Movie api++++++++++++++++++++++++++++++++++

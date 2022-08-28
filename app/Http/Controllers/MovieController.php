@@ -90,7 +90,7 @@ class MovieController extends BaseController
         $movie_genres = $movie->Genres;
         $times =Time::all();
         $movie_times = $movie->Times;
-        return $this->sendResponse(['halls'=>$halls, 'genres' => $genres,  'movie_times' => $movie_times, 'times' => $times,  'movie_genres' => $movie_genres],'Movie updated sussesfully');
+        return $this->sendResponse(['movie'=>$movie,'halls'=>$halls, 'genres' => $genres,  'movie_times' => $movie_times, 'times' => $times,  'movie_genres' => $movie_genres],'Movie updated sussesfully');
     }
 
     /**

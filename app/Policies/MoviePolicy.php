@@ -66,7 +66,7 @@ class MoviePolicy
      */
     public function delete(User $user, Movie $movie)
     {
-        return Gate::allows('movie_delete');
+        return Gate::allows('movie_destroy');
     }
 
     /**
