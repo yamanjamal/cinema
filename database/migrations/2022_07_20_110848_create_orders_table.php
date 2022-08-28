@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
             $table->dateTime('date');
             $table->enum('status',['ordered','received'])->default('ordered');
             $table->float('total_price');

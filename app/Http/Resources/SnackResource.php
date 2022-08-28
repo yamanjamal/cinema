@@ -21,7 +21,7 @@ class SnackResource extends JsonResource
             'image'         => $this->image,
             'active'        => $this->active,
             'description'   => $this->description,
-            'orderitems'    => OrderItemResource::collection($this->whenloaded('OrderItems')),
+            'orderitems'    => OrderItemResource::collection($this->whenloaded('OrederItems')),
         ];
     }
 }

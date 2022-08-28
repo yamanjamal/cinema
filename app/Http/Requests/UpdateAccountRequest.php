@@ -24,7 +24,8 @@ class UpdateAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'points'   => ['required','double'],
+            'code'   => ['required','string','exists:accounts,code'],
+            'points' => ['required','numeric'],
         ];
     }
 }
