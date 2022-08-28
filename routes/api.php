@@ -35,9 +35,9 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::get('/',                    'index');
         Route::get('/create',              'create');
         Route::post('/',                   'store');
-        Route::put('/{movie}',             'show');
+        Route::get('/{movie}',             'show');
         Route::get('/{movie}/edit',        'edit');
-        Route::put('/{movie}',           'update');
+        Route::post('/{movie}',           'update');
         Route::delete('/{movie}',         'destroy');
         Route::get('/search',            'search');
     });

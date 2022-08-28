@@ -28,6 +28,7 @@ class StoreMovieRequest extends FormRequest
             'hall_id'     =>['string','required','exists:halls,id'],
             'type'        =>['string','required'],
             'image'       =>['image','required'],
+            'video'       =>['string','required'],
             'description' =>['string','required'],
             'from'        =>['date','required'],
             'to'          =>['date','required'],

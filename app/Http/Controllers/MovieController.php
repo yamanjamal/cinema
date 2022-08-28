@@ -105,12 +105,12 @@ class MovieController extends BaseController
         try{
             unlink(public_path($movie->image));
         }catch(\Exception $e){}
-        $imgname=time().$request->image->getClientOriginalName();
+        $imgname = time().$request->image->getClientOriginalName();
         $img = Image::make($request->image);
         $img->save('upload/Imgs/'.$imgname,100,'jpg');
         $movie->update($request->except('image') + ['image'=>'upload/Imgs/'.$imgname]);
         $movie->Genres()->sync($request->genres);
-        $movie->Starttimes()->sync($request->starttimes);
+        $movie->times()->sync($request->times);
         return $this->sendResponse(new MovieResource($movie->load(['Genres','Times'])),'Movie updated sussesfully');
     }
 

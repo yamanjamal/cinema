@@ -20,7 +20,7 @@ class MovieResource extends JsonResource
             'type'          => $this->type,
             'image'         => $this->image,
             'description'   => $this->description,
-            'Video'         => $this->Video,
+            'video'         => $this->video,
             'from'          => $this->from,
             'to'            => $this->to,
             'showing_type'  => $this->showing_type,
