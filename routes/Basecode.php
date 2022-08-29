@@ -37,8 +37,8 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     Route::group(['prefix' => 'User', 'controller' => UserController::class], function() {
         Route::get('/',                 'index');
         Route::get('/count',            'count');
-        Route::put('/deactivate/{user}','deactivate');
-        Route::put('/activate/{user}',  'activate');
+        Route::get('/deactivate/{user}','deactivate');
+        Route::get('/activate/{user}',  'activate');
         Route::get('/search',           'search');
     });
     // +++++++++++++++++++++++++++++++end UserManegment api++++++++++++++++++++++++++++
