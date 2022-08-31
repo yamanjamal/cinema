@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Ticket;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\OrderResource;
 use App\Http\Resources\TicketResource;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\ChangePasswordRequest;
@@ -23,6 +26,12 @@ class profilecontroller extends BaseController
     {
         $tickets = Ticket::with('Movie')->where('user_id',auth()->user()->id)->paginate(5);
         return $this->sendResponse(TicketResource::collection($tickets),'Ticket sent sussesfully');
+    } 
+
+    public function myOrders()
+    {
+        $orders = auth()->user()->Orders()->get();
+        return $this->sendResponse(OrderResource::collection($orders),'Ticket sent sussesfully');
     } 
 
     public function editprofile(UpdateProfileRequest $request)

@@ -24,7 +24,7 @@ class UpdateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'date'        =>['datetime','required'],
+            'status'        => ['in:ordered,received,city_ledger,voucher,credit','nullable'],
         ];
     }
 }

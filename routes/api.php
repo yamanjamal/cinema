@@ -59,7 +59,10 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
 
     // +++++++++++++++++++++++++++++++start Order api++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'Order', 'controller' => OrderController::class], function() {
-        Route::get('/',                    'index');
+        Route::get('/ordered',             'ordered');
+        Route::put('/approve/{order}',     'approve');
+        Route::get('/approved',            'approved');
+        Route::put('/received/{order}',    'received');
         Route::post('/',                   'store');
         Route::get('/{order}',             'show');
         Route::delete('/{order}',          'destroy');
@@ -71,6 +74,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     Route::group(['prefix' => 'Profile','controller' => ProfileController::class], function() {
         Route::get('/info',           'info');
         Route::get('/mytickets',      'mytickets');
+        Route::get('/myorders',      'myOrders');
         Route::put('/editprofile',    'editprofile');
         Route::put('/changepassword', 'changepassword');
     });

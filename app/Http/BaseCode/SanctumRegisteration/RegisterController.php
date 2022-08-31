@@ -39,7 +39,11 @@ class RegisterController extends BaseController
             'user_id'     => $user->id,
             'points'     => 0.00,
         ]);
-        $user->assignRole('User');
+        if($request->role){
+            $user->assignRole($request->role);
+        }else{
+            $user->assignRole('User');
+        }
 
         return $this->sendResponse(new UserResource($user->load('Account')),'user registerd successfully');
     }
