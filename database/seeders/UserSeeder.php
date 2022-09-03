@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'phone' => '0962144639',
             'email_verified_at' => now(),
-            'id_img'=>'img/5.jpg',
+            'id_img'=>'upload/Imgs/5.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'reseption@reseption.com',
             'phone' => '0959374880',
             'email_verified_at' => now(),
-            'id_img'=>'img/10.jpg',
+            'id_img'=>'upload/Imgs/10.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'vendor@vendor.com',
             'phone' => '0988025804',
             'email_verified_at' => now(),
-            'id_img'=>'img/9.jpg',
+            'id_img'=>'upload/Imgs/9.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
             'email' => 'distributor@distributor.com',
             'phone' => '0988025806',
             'email_verified_at' => now(),
-            'id_img'=>'img/9.jpg',
+            'id_img'=>'upload/Imgs/9.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
