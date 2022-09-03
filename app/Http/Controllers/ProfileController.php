@@ -19,7 +19,7 @@ class profilecontroller extends BaseController
     public function info()
     {
         $user =auth()->user();
-        return $this->sendResponse(new UserResource($user->load(['roles.permissions'])),'user info sussesfully');
+        return $this->sendResponse(new UserResource($user->load(['roles.permissions','Account'])),'user info sussesfully');
     }
 
     public function mytickets()
