@@ -19,7 +19,7 @@ class RoleController extends BaseController
     public function index()
     {
         abort_if(Gate::denies('role_access'), 403);
-        $roles =Role::where('id','!=',1)->get();
+        $roles =Role::with('permissions')->where('id','!=',1)->get();
         return $this->sendResponse(RoleResource::collection($roles),'Roles sent sussesfully');
     }
 
@@ -43,7 +43,7 @@ class RoleController extends BaseController
 
     public function destroy(Role $role)
     {
-        abort_if(Gate::denies('role_delete'), 403);
+       // abort_if(Gate::denies('role_delete'), 403);
         $role->delete();
         return $this->sendResponse(new RoleResource($role),'Role deleted sussesfully');
     }
@@ -61,6 +61,6 @@ class RoleController extends BaseController
         abort_if(Gate::denies('role_revoke'), 403);
         $user = User::with('roles.permissions','permissions')->where('id','!=',1)->findOrFail($request->user_id);
         $user->removeRole($request->role);
-        return $this->sendResponse(new UserResource($user),'Role granted sussesfully');
+        return $this->sendResponse(new UserResource($user),'Role revoke sussesfully');
     }
 }
