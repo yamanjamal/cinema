@@ -68,28 +68,16 @@ class MoviePolicy
     {
         return Gate::allows('movie_destroy');
     }
-
+    
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Movie $movie)
+    public function search(User $user, Movie $movie)
     {
-        return Gate::allows('movie_restore');
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Movie $movie)
-    {
-        return Gate::allows('movie_forcedelete');
+        return Gate::allows('movie_search');
     }
 }

@@ -64,6 +64,7 @@ class TimeController extends BaseController
      */
     public function deactivate(Time $time)
     {
+        $this->authorize('deactivate', Time::class);
         $time->update(['active'=>false]);
         return $this->sendResponse(new TimeResource($time),'Time deactivate sussesfully');
     }
@@ -76,6 +77,7 @@ class TimeController extends BaseController
      */
     public function activate(Time $time)
     {
+        $this->authorize('activate', Time::class);
         $time->update(['active'=>true]);
         return $this->sendResponse(new TimeResource($time),'Time activated sussesfully');
     }

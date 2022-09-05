@@ -12,17 +12,6 @@ class OrderPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
-    {
-        return Gate::allows('order_access');
-    }
-
-    /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
@@ -35,6 +24,53 @@ class OrderPolicy
     }
 
     /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function ordered(User $user, Order $order)
+    {
+        return Gate::allows('order_ordered');
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function approved(User $user, Order $order)
+    {
+        return Gate::allows('order_approved');
+    }
+    
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function approve(User $user, Order $order)
+    {
+        return Gate::allows('order_approve');
+    }
+    
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function received(User $user, Order $order)
+    {
+        return Gate::allows('order_received');
+    }
+    /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
@@ -43,53 +79,5 @@ class OrderPolicy
     public function create(User $user)
     {
         return Gate::allows('order_create');
-    }
-
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function update(User $user, Order $order)
-    {
-        return Gate::allows('order_update');
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function delete(User $user, Order $order)
-    {
-        return Gate::allows('order_delete');
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Order $order)
-    {
-        return Gate::allows('order_restore');
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Order $order)
-    {
-        return Gate::allows('order_forcedelete');
     }
 }

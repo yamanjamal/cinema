@@ -43,7 +43,7 @@ class RoleController extends BaseController
 
     public function destroy(Role $role)
     {
-       // abort_if(Gate::denies('role_delete'), 403);
+       abort_if(Gate::denies('role_delete'), 403);
         $role->delete();
         return $this->sendResponse(new RoleResource($role),'Role deleted sussesfully');
     }

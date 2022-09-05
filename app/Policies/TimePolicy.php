@@ -23,18 +23,6 @@ class TimePolicy
     }
 
     /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Time  $time
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Time $time)
-    {
-        return Gate::allows('time_show');
-    }
-
-    /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
@@ -52,44 +40,20 @@ class TimePolicy
      * @param  \App\Models\Time  $time
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Time $time)
+    public function deactivate(User $user, Time $time)
     {
-        return Gate::allows('time_update');
+        return Gate::allows('time_deactivate');
     }
-
+    
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Time  $time
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Time $time)
+    public function activate(User $user, Time $time)
     {
-        return Gate::allows('time_delete');
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Time  $time
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Time $time)
-    {
-        return Gate::allows('time_restore');
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Time  $time
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Time $time)
-    {
-        return Gate::allows('time_forcedelete');
+        return Gate::allows('time_activate');
     }
 }

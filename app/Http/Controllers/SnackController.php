@@ -10,13 +10,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class SnackController extends BaseController
 {
-
     public $paginate=10;
 
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Snack::class,'snack');
-    // }
+    public function __construct()
+    {
+        $this->authorizeResource(Snack::class,'snack');
+    }
 
     public function index()
     {
@@ -26,6 +25,7 @@ class SnackController extends BaseController
 
     public function indexuser()
     {
+        $this->authorize('indexuser', Snack::class);
         $snacks = Snack::where('active',1)->paginate(3);
         return $this->sendResponse(SnackResource::collection($snacks)->response()->getData(true),'Snacks sent sussesfully');
     }
@@ -59,12 +59,14 @@ class SnackController extends BaseController
 
     public function deactivate(Snack $snack)
     {
+        $this->authorize('deactivate', Snack::class);
         $snack->update(['active'=>false]);
         return $this->sendResponse(new SnackResource($snack),'Snack deactivated sussesfully');
     }
 
     public function activate(Snack $snack)
     {
+        $this->authorize('activate', Snack::class);
         $snack->update(['active'=>true]);
         return $this->sendResponse(new SnackResource($snack),'Snack activated sussesfully');
     }

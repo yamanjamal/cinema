@@ -12,10 +12,10 @@ class AccountController extends BaseController
 {
     public $paginate=10;
 
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Account::class,'account');
-    // }
+    public function __construct()
+    {
+        $this->authorizeResource(Account::class,'account');
+    }
 
     public function show(Account $account)
     {
@@ -24,6 +24,7 @@ class AccountController extends BaseController
 
     public function adminUpdate(UpdateAccountRequest $request)
     {
+        $this->authorize('adminUpdate', Account::class);
         $account = Account::where('code',$request->code)->first();
         $account->update(['points'=>($account->points + $request->points)]);
         return $this->sendResponse(new AccountResource($account),'Account updated sussesfully');

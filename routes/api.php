@@ -65,7 +65,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::put('/received/{order}',    'received');
         Route::post('/',                   'store');
         Route::get('/{order}',             'show');
-        Route::delete('/{order}',          'destroy');
+        // Route::delete('/{order}',          'destroy');
         Route::get('/search',              'search');
     });
     // +++++++++++++++++++++++++++++++end Order api++++++++++++++++++++++++++++++++++

@@ -10,7 +10,6 @@ use App\Services\Fillseats;
 
 class HallController extends BaseController
 {
-
     public $paginate=10;
 
     public function __construct()

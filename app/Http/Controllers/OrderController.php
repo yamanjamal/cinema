@@ -17,19 +17,21 @@ class OrderController extends BaseController
 {
     public $paginate=10;
 
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Order::class,'order');
-    // }
+    public function __construct()
+    {
+        $this->authorizeResource(Order::class,'order');
+    }
 
     public function ordered()
     {
+        $this->authorize('ordered', Order::class);
         $orders = Order::where('status','ordered')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders)->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function approved()
     {
+        $this->authorize('approved', Order::class);
         $orders = Order::where('status','approved')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders)->response()->getData(true),'Orders sent sussesfully');
     }
@@ -96,19 +98,21 @@ class OrderController extends BaseController
 
     public function approve(Request $request, Order $order)
     {
+        $this->authorize('approve', Order::class);
         $order->update(['status'=>'approved']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
 
     public function received(Request $request, Order $order)
     {
+        $this->authorize('received', Order::class);
         $order->update(['status'=>'received']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
 
-    public function destroy(Order $order)
-    {
-        $order->delete();
-        return $this->sendResponse(new OrderResource($order),'Order deleted sussesfully');
-    }
+    // public function destroy(Order $order)
+    // {
+    //     $order->delete();
+    //     return $this->sendResponse(new OrderResource($order),'Order deleted sussesfully');
+    // }
 }

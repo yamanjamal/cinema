@@ -52,44 +52,32 @@ class SnackPolicy
      * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Snack $snack)
+    public function indexuser(User $user, Snack $snack)
     {
-        return Gate::allows('snack_update');
+        return Gate::allows('snack_indexuser');
     }
-
+    
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Snack $snack)
+    public function deactivate(User $user, Snack $snack)
     {
-        return Gate::allows('snack_delete');
+        return Gate::allows('snack_deactivate');
     }
-
+    
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Snack  $snack
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Snack $snack)
+    public function activate(User $user, Snack $snack)
     {
-        return Gate::allows('snack_restore');
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Snack  $snack
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Snack $snack)
-    {
-        return Gate::allows('snack_forcedelete');
+        return Gate::allows('snack_activate');
     }
 }

@@ -16,10 +16,10 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends BaseController
 {
     public $paginate=10;
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(User::class, 'user');
-    // }
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user');
+    }
     
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class UserController extends BaseController
      */
     public function count()
     {
-        // $this->authorize('count', User::class);
+        $this->authorize('count', User::class);
         return User::count();
     }
 
@@ -51,6 +51,7 @@ class UserController extends BaseController
      */
     public function deactivate(User $user)
     {
+        $this->authorize('deactivate', User::class);
         $user->update(['active'=>false]);
         return $this->sendResponse(new UserResource($user),'user deactivate sussesfully');
     }
@@ -63,6 +64,7 @@ class UserController extends BaseController
      */
     public function activate(User $user)
     {
+        $this->authorize('activate', User::class);
         $user->update(['active'=>true]);
         return $this->sendResponse(new UserResource($user),'user activated sussesfully');
     }

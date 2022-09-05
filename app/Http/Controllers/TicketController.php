@@ -26,6 +26,7 @@ class TicketController extends BaseController
      */
     public function stepOne(StoreTicketRequest $request,Movie $movie)
     {
+        $this->authorize('stepOne', Ticket::class);
         return $this->sendResponse(new MovieResource($movie->load(['Times','Hall'])),'step one created sussesfully');
     }
     /**
@@ -36,6 +37,7 @@ class TicketController extends BaseController
      */
     public function stepTwo(StoreTicketRequest $request,Movie $movie)
     {
+        $this->authorize('stepTwo', Ticket::class);
         $hall=$request->hall_id;
         $date=$request->date;
         $st=$request->starttime;
@@ -61,41 +63,5 @@ class TicketController extends BaseController
         $availableseates=$movie1->Hall->seats->where('available',1);
         $ticket = Ticket::create($request->validated());
         return $this->sendResponse(new TicketResource($ticket),'Ticket created sussesfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Ticket $ticket)
-    {
-        return $this->sendResponse(new TicketResource($ticket),'Ticket shown sussesfully');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTicketRequest  $request
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
-    {
-        $ticket->update($request->validated());
-        return $this->sendResponse(new TicketResource($ticket),'Ticket updated sussesfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Ticket $ticket)
-    {
-        $ticket->delete();
-        return $this->sendResponse(new TicketResource($ticket),'Ticket deleted sussesfully');
     }
 }

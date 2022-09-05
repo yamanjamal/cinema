@@ -27,7 +27,7 @@ class PermissionSeeder extends Seeder
             'role_show',
             'role_create',
             'role_edit',
-            'role_destroy',
+            'role_delete',
             'role_grant',
             'role_revoke',
 
@@ -36,12 +36,11 @@ class PermissionSeeder extends Seeder
             'permission_grant',
             'permission_revoke',
             
-            'price_access',
-            'price_update',
-
             'hall_access',
             'hall_create',
-            'hall_search',
+
+            'price_access',
+            'price_update',
 
             'movie_access',
             'movie_nowshowing',
@@ -52,44 +51,48 @@ class PermissionSeeder extends Seeder
             'movie_destroy',
             'movie_search',
 
-            'user_info',
             'user_access',
-            'user_create',
-            'user_show',
-            'user_update',
-            'user_updatepassword',
+            'user_count',
             'user_deactivate',
             'user_activate',
-            'user_search',
+            'user_search', 
 
-            'order_access',
-            'order_create',
-            'order_show',
-            'order_update',
-            //'order_destroy',
-            //'order_search',
-            
-            'account_transfer',
+            'profile_info',
+            'profile_tickets',
+            'profile_orders',
+            'profile_edit',
+            'profile_updatepassword',
 
-            'snack_access',
-            'snack_accessuser',
-            'snack_create',
-            'snack_show',
-            'snack_update',
-            'snack_deactivate',
-            'snack_activate',
 
             'time_access',
             'time_create',
-            'time_show',
             'time_update',
             'time_deactivate',
             'time_activate',
 
-            'ticket_mytickets',
             'ticket_create',
-            'ticket_steptwo',
-            'ticket_search',
+            'ticket_stepone',
+            'ticket_steptow',
+
+            'invoice_access',
+
+            'account_show',
+            'account_update',
+            'account_admin_update',
+
+            'order_show',
+            'order_create',
+            'order_ordered',
+            'order_approved',
+            'order_approve',
+            'order_recived',
+
+            'snack_access',
+            'snack_show',
+            'snack_create',
+            'snack_indexuser',
+            'snack_deactivate',
+            'snack_activate',
         ];
 
         foreach ($permissions as $permission)   {
@@ -107,7 +110,7 @@ class PermissionSeeder extends Seeder
             'role_show',
             'role_create',
             'role_edit',
-            'role_destroy',
+            'role_delete',
             'role_grant',
             'role_revoke',
 
@@ -118,13 +121,11 @@ class PermissionSeeder extends Seeder
             
             'hall_access',
             'hall_create',
-            'hall_search',
 
             'price_access',
             'price_update',
 
             'movie_access',
-            'movie_nowshowing',
             'movie_showuser',
             'movie_create',
             'movie_show',
@@ -132,29 +133,48 @@ class PermissionSeeder extends Seeder
             'movie_destroy',
             'movie_search',
 
-            'user_info',
             'user_access',
-            'user_create',
-            'user_show',
-            'user_update',
-            'user_updatepassword',
+            'user_count',
             'user_deactivate',
             'user_activate',
-            'user_search',
+            'user_search', 
 
-            'price_update',
+            'profile_info',
+            'profile_tickets',
+            'profile_orders',
+            'profile_edit',
+            'profile_updatepassword',
+
 
             'time_access',
             'time_create',
-            'time_show',
             'time_update',
             'time_deactivate',
             'time_activate',
 
-            'ticket_mytickets',
             'ticket_create',
-            'ticket_steptwo',
-            'ticket_search',
+            'ticket_stepone',
+            'ticket_steptow',
+
+            'invoice_access',
+
+            'account_show',
+            'account_update',
+            'account_admin_update',
+
+            'order_show',
+            'order_create',
+            'order_ordered',
+            'order_approved',
+            'order_approve',
+            'order_recived',
+
+            'snack_access',
+            'snack_show',
+            'snack_create',
+            'snack_indexuser',
+            'snack_deactivate',
+            'snack_activate',
         ];
 
         foreach ($permissions as $permission)   {
@@ -176,9 +196,10 @@ class PermissionSeeder extends Seeder
             'movie_update',
             'movie_destroy',
             'movie_search',
-            'user_info',
-            'user_update',
-            'user_updatepassword',
+
+            'profile_info',
+            'profile_edit',
+            'profile_updatepassword',
         ];
 
         foreach ($permissions as $permission)   {
@@ -189,23 +210,21 @@ class PermissionSeeder extends Seeder
 
         // create Vendor permissions
         $permissions = [
-            'user_info',
-            'user_update',
-            'user_updatepassword',
+            'profile_info',
+            'profile_edit',
+            'profile_updatepassword',
 
-            'order_access',
-            // 'order_myorder',
-            'order_create',
             'order_show',
-            'order_update',
-            //'order_destroy',
-            //'order_search',
+            'order_create',
+            'order_ordered',
+            'order_approved',
+            'order_approve',
+            'order_recived',
 
             'snack_access',
-            'snack_accessuser',
-            'snack_create',
             'snack_show',
-            'snack_update',
+            'snack_create',
+            'snack_indexuser',
             'snack_deactivate',
             'snack_activate',
         ];
@@ -218,10 +237,12 @@ class PermissionSeeder extends Seeder
 
         // create Vendor permissions
         $permissions = [
-            'user_info',
-            'user_update',
-            'user_updatepassword',
-            'account_transfer'
+            'profile_info',
+            'profile_edit',
+            'profile_updatepassword',
+
+            'account_show',
+            'account_update',
         ];
 
         foreach ($permissions as $permission)   {
@@ -233,23 +254,31 @@ class PermissionSeeder extends Seeder
 
         // create User permissions
         $permissions = [
-            'user_info',
-            'user_update',
-            'user_updatepassword',
+            'price_access',
 
-            'ticket_mytickets',
+            'movie_showuser',
+            'movie_show',
+
+            'profile_info',
+            'profile_tickets',
+            'profile_orders',
+            'profile_edit',
+            'profile_updatepassword',
+
+
             'ticket_create',
-            'ticket_steptwo',
-            'ticket_search',
+            'ticket_stepone',
+            'ticket_steptow',
 
-            // 'order_myorder',
-            'order_create',
+            'invoice_access',
+
+            'account_show',
+
             'order_show',
-            'order_update',
-            //'order_destroy',
-            //'order_search',
+            'order_create',
 
-            'snack_accessuser',
+            'snack_show',
+            'snack_indexuser',
         ];
 
         foreach ($permissions as $permission)   {

@@ -11,6 +11,7 @@ use App\Http\Resources\MovieResource;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\UpdateMovieRequest;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Http\Request;
 
 class MovieController extends BaseController
 {
@@ -132,6 +133,7 @@ class MovieController extends BaseController
 
     public function search(Request $request)
     {
+        // $this->authorize('search', Movie::class);
         return 's';
         // $prices = Price::all();
         // $genres=Genre::all();

@@ -9,7 +9,6 @@ use App\Http\Requests\UpdateOrederItemRequest;
 
 class OrederItemController extends BaseController
 {
-
     public $paginate=10;
 
     public function __construct()
