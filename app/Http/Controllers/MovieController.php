@@ -34,6 +34,13 @@ class MovieController extends BaseController
         return $this->sendResponse(MovieResource::collection($movies)->response()->getData(true),'Movies sent sussesfully');
     }
 
+    public function indexuser()
+    {
+        $movie = Movie::where('showing_type','now showing')->paginate(3);
+        return $this->sendResponse(MovieResource::collection($movies)->response()->getData(true),'Movies sent sussesfully');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
