@@ -126,7 +126,6 @@ class PermissionSeeder extends Seeder
             'price_update',
 
             'movie_access',
-            'movie_showuser',
             'movie_create',
             'movie_show',
             'movie_update',
@@ -172,7 +171,6 @@ class PermissionSeeder extends Seeder
             'snack_access',
             'snack_show',
             'snack_create',
-            'snack_indexuser',
             'snack_deactivate',
             'snack_activate',
         ];
@@ -189,8 +187,6 @@ class PermissionSeeder extends Seeder
         // create Reception permissions
         $permissions = [
             'movie_access',
-            'movie_nowshowing',
-            'movie_showuser',
             'movie_create',
             'movie_show',
             'movie_update',
@@ -224,7 +220,6 @@ class PermissionSeeder extends Seeder
             'snack_access',
             'snack_show',
             'snack_create',
-            'snack_indexuser',
             'snack_deactivate',
             'snack_activate',
         ];
@@ -256,7 +251,6 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'price_access',
 
-            'movie_showuser',
             'movie_show',
 
             'profile_info',
@@ -278,7 +272,6 @@ class PermissionSeeder extends Seeder
             'order_create',
 
             'snack_show',
-            'snack_indexuser',
         ];
 
         foreach ($permissions as $permission)   {
