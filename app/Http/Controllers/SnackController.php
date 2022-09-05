@@ -25,7 +25,6 @@ class SnackController extends BaseController
 
     public function indexuser()
     {
-        $this->authorize('indexuser', Snack::class);
         $snacks = Snack::where('active',1)->paginate(3);
         return $this->sendResponse(SnackResource::collection($snacks)->response()->getData(true),'Snacks sent sussesfully');
     }
