@@ -7,6 +7,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SnackController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
@@ -65,7 +66,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::put('/received/{order}',    'received');
         Route::post('/',                   'store');
         Route::get('/{order}',             'show');
-        // Route::delete('/{order}',          'destroy');
+        Route::delete('/{order}',          'destroy');
         Route::get('/search',              'search');
     });
     // +++++++++++++++++++++++++++++++end Order api++++++++++++++++++++++++++++++++++
@@ -94,6 +95,13 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::put('/{price}',           'update');
     });
     // +++++++++++++++++++++++++++++++end Price api++++++++++++++++++++++++++++++++++
+
+     // +++++++++++++++++++++++++++++++start Invoice api++++++++++++++++++++++++++++++++
+     Route::group(['prefix' => 'Invoice', 'controller' => InvoiceController::class], function() {
+        Route::get('/',                    'myinvoices');
+        Route::put('/{invoice}',           'update');
+    });
+    // +++++++++++++++++++++++++++++++end Invoice api++++++++++++++++++++++++++++++++++
 });
 
 require __DIR__.'/Basecode.php'; 

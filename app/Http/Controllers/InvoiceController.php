@@ -24,7 +24,7 @@ class InvoiceController extends BaseController
     public function myinvoices()
     {
         $this->authorize('myinvoices', Invoice::class);
-        $invoices = Invoice::where('user_id',auth()->user()->id)->paginate($this->paginate);
+        $invoices = auth()->user()->Account->Invoices()->paginate($this->paginate);
         return $this->sendResponse(InvoiceResource::collection($invoices)->response()->getData(true),'Invoices sent sussesfully');
     }
 

@@ -28,7 +28,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function count(User $user, User $model)
+    public function count(User $user)
     {
         return Gate::allows('user_count');
     }
@@ -40,7 +40,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deactivate(User $user, User $model)
+    public function deactivate(User $user)
     {
         return Gate::allows('user_deactivate');
     }
@@ -52,7 +52,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function activate(User $user, User $model)
+    public function activate(User $user)
     {
         return Gate::allows('user_activate');
     }
@@ -68,5 +68,55 @@ class UserPolicy
     {
         return Gate::allows('user_search');
     }
-
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function info(User $user)
+    {
+        return Gate::allows('profile_info');
+    }
+    
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function mytickets(User $user)
+    {
+        return Gate::allows('profile_tickets');
+    }
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function myOrders(User $user)
+    {
+        return Gate::allows('profile_orders');
+    }
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function editprofile(User $user)
+    {
+        return Gate::allows('profile_edit');
+    }
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function changepassword(User $user)
+    {
+        return Gate::allows('profile_changepassword');
+    }
 }

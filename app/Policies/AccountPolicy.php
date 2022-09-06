@@ -30,7 +30,7 @@ class AccountPolicy
      * @param  \App\Models\Account  $account
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function adminUpdate(User $user, Account $account)
+    public function adminUpdate(User $user)
     {
         return Gate::allows('account_admin_update');
     }

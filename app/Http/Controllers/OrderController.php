@@ -26,14 +26,14 @@ class OrderController extends BaseController
     {
         $this->authorize('ordered', Order::class);
         $orders = Order::where('status','ordered')->paginate($this->paginate);
-        return $this->sendResponse(OrderResource::collection($orders)->response()->getData(true),'Orders sent sussesfully');
+        return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function approved()
     {
         $this->authorize('approved', Order::class);
         $orders = Order::where('status','approved')->paginate($this->paginate);
-        return $this->sendResponse(OrderResource::collection($orders)->response()->getData(true),'Orders sent sussesfully');
+        return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function store(StoreOrderRequest $request)
@@ -110,9 +110,9 @@ class OrderController extends BaseController
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
 
-    // public function destroy(Order $order)
-    // {
-    //     $order->delete();
-    //     return $this->sendResponse(new OrderResource($order),'Order deleted sussesfully');
-    // }
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return $this->sendResponse(new OrderResource($order),'Order deleted sussesfully');
+    }
 }

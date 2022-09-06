@@ -43,8 +43,6 @@ class PermissionSeeder extends Seeder
             'price_update',
 
             'movie_access',
-            'movie_nowshowing',
-            'movie_showuser',
             'movie_create',
             'movie_show',
             'movie_update',
@@ -85,12 +83,12 @@ class PermissionSeeder extends Seeder
             'order_ordered',
             'order_approved',
             'order_approve',
-            'order_recived',
+            'order_received',
 
             'snack_access',
             'snack_show',
             'snack_create',
-            'snack_indexuser',
+            'snack_update',
             'snack_deactivate',
             'snack_activate',
         ];
@@ -166,11 +164,12 @@ class PermissionSeeder extends Seeder
             'order_ordered',
             'order_approved',
             'order_approve',
-            'order_recived',
+            'order_received',
 
             'snack_access',
             'snack_show',
             'snack_create',
+            'snack_update',
             'snack_deactivate',
             'snack_activate',
         ];
@@ -215,10 +214,11 @@ class PermissionSeeder extends Seeder
             'order_ordered',
             'order_approved',
             'order_approve',
-            'order_recived',
+            'order_received',
 
             'snack_access',
             'snack_show',
+            'snack_update',
             'snack_create',
             'snack_deactivate',
             'snack_activate',

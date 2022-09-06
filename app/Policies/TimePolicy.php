@@ -37,10 +37,22 @@ class TimePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Movie  $movie
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user, Time $time)
+    {
+        return Gate::allows('time_update');
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
      * @param  \App\Models\Time  $time
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function deactivate(User $user, Time $time)
+    public function deactivate(User $user)
     {
         return Gate::allows('time_deactivate');
     }
@@ -52,7 +64,7 @@ class TimePolicy
      * @param  \App\Models\Time  $time
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function activate(User $user, Time $time)
+    public function activate(User $user)
     {
         return Gate::allows('time_activate');
     }

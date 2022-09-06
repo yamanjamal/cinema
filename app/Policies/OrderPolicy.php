@@ -30,7 +30,7 @@ class OrderPolicy
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function ordered(User $user, Order $order)
+    public function ordered(User $user)
     {
         return Gate::allows('order_ordered');
     }
@@ -42,7 +42,7 @@ class OrderPolicy
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function approved(User $user, Order $order)
+    public function approved(User $user)
     {
         return Gate::allows('order_approved');
     }
@@ -54,7 +54,7 @@ class OrderPolicy
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function approve(User $user, Order $order)
+    public function approve(User $user)
     {
         return Gate::allows('order_approve');
     }
@@ -66,10 +66,11 @@ class OrderPolicy
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function received(User $user, Order $order)
+    public function received(User $user)
     {
         return Gate::allows('order_received');
     }
+    
     /**
      * Determine whether the user can create models.
      *
@@ -79,5 +80,17 @@ class OrderPolicy
     public function create(User $user)
     {
         return Gate::allows('order_create');
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete(User $user, Order $order)
+    {
+        return Gate::allows('order_destroy');
     }
 }

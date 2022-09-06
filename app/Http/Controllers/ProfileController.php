@@ -17,28 +17,28 @@ class profilecontroller extends BaseController
 {
     public function info()
     {
-        $this->authorize('info', Profile::class);
+        $this->authorize('info', User::class);
         $user =auth()->user();
         return $this->sendResponse(new UserResource($user->load(['roles.permissions','Account'])),'user info sussesfully');
     }
 
     public function mytickets()
     {
-        $this->authorize('mytickets', Profile::class);
+        $this->authorize('mytickets', User::class);
         $tickets = Ticket::with('Movie')->where('user_id',auth()->user()->id)->paginate(5);
         return $this->sendResponse(TicketResource::collection($tickets),'Ticket sent sussesfully');
     } 
 
     public function myOrders()
     {
-        $this->authorize('myOrders', Profile::class);
+        $this->authorize('myOrders', User::class);
         $orders = auth()->user()->Orders()->get();
         return $this->sendResponse(OrderResource::collection($orders),'Ticket sent sussesfully');
     } 
 
     public function editprofile(UpdateProfileRequest $request)
     {
-        $this->authorize('editprofile', Profile::class);
+        $this->authorize('editprofile', User::class);
         $user = auth()->user();
         $user->update($request->validated());
         return $this->sendResponse(new UserResource($user),'user edited sussesfully');
@@ -46,7 +46,7 @@ class profilecontroller extends BaseController
 
     public function changepassword(ChangePasswordRequest $request)
     {
-        $this->authorize('changepassword', Profile::class);
+        $this->authorize('changepassword', User::class);
         $user = auth()->user();
         if (Hash::check($request->oldpassword,$user->password)) {
             $user->update(['password' => Hash::make($request->newpassword)]);
