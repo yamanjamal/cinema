@@ -52,5 +52,4 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
 
 Route::post('/login',             [RegisterController::class,'login']);
 Route::post('/register',          [RegisterController::class,'register']);
-Route::get('/Movie/indexuser',           [MovieController::class,'indexuser']);
 

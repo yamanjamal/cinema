@@ -201,6 +201,9 @@ class PermissionSeeder extends Seeder
             $Reception->givePermissionTo($permission);
         }
 
+        $user1 = User::where('id',2)->first();
+        $user1->assignRole('Reception');
+
         $Vendor = Role::create(['name' => 'Vendor']);
 
         // create Vendor permissions
@@ -228,6 +231,10 @@ class PermissionSeeder extends Seeder
             $Vendor->givePermissionTo($permission);
         }
 
+        
+        $user1 = User::where('id',3)->first();
+        $user1->assignRole('Vendor');
+
         $Distributor = Role::create(['name' => 'Distributor']);
 
         // create Vendor permissions
@@ -243,6 +250,9 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $permission)   {
             $Distributor->givePermissionTo($permission);
         }
+
+        $user1 = User::where('id',4)->first();
+        $user1->assignRole('Distributor');
 
 
         $User = Role::create(['name' => 'User']);
