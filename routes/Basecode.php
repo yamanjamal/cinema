@@ -7,6 +7,7 @@ use App\Http\BaseCode\UserManagement\UserController;
 use App\Http\BaseCode\RolesandPermissions\RoleController;
 use App\Http\BaseCode\SanctumRegisteration\RegisterController;
 use App\Http\BaseCode\RolesandPermissions\PermissionController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,5 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
 
 Route::post('/login',             [RegisterController::class,'login']);
 Route::post('/register',          [RegisterController::class,'register']);
+Route::get('/Movie/indexuser',           [MovieController::class,'indexuser']);
+

@@ -10,7 +10,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class SnackController extends BaseController
 {
-    public $paginate=10;
+    public $paginate=7;
 
     public function __construct()
     {

@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends BaseController
 {
-    public $paginate=10;
+    public $paginate=7;
     public function __construct()
     {
         $this->authorizeResource(User::class, 'user');
@@ -29,7 +29,7 @@ class UserController extends BaseController
     public function index()
     {
         $users = User::with('roles.permissions')->where('id','!=',1)->paginate($this->paginate);
-        return $this->sendResponse(UserResource::collection($users),'Users sent sussesfully');
+        return $this->sendResponse(UserResource::collection($users)->response()->getData(true),'Users sent sussesfully');
     }
 
     /**
