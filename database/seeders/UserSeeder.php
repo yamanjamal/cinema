@@ -75,5 +75,6 @@ class UserSeeder extends Seeder
             'user_id'     => $distributor->id,
             'points'     => 0.00,
         ]);
+        User::factory(10)->create();
     }
 }

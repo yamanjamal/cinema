@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class MovieController extends BaseController
 {
 
-    public $paginate=10;
+    public $paginate=7;
 
     public function __construct()
     {
@@ -36,7 +36,7 @@ class MovieController extends BaseController
 
     public function indexuser()
     {
-        $movie = Movie::where('showing_type','now showing')->paginate(3);
+        $movies = Movie::with(['Genres','Hall'])->where('showing_type','now showing')->paginate(3);
         return $this->sendResponse(MovieResource::collection($movies)->response()->getData(true),'Movies sent sussesfully');
     }
 

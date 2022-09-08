@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HallController;
 use App\Http\Controllers\TimeController;
-use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
@@ -103,6 +102,9 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     });
     // +++++++++++++++++++++++++++++++end Invoice api++++++++++++++++++++++++++++++++++
 });
+
+Route::get('/Movie/indexuser',           [MovieController::class,'indexuser']);
+
 
 require __DIR__.'/Basecode.php'; 
 

@@ -7,6 +7,7 @@ use App\Http\BaseCode\UserManagement\UserController;
 use App\Http\BaseCode\RolesandPermissions\RoleController;
 use App\Http\BaseCode\SanctumRegisteration\RegisterController;
 use App\Http\BaseCode\RolesandPermissions\PermissionController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
