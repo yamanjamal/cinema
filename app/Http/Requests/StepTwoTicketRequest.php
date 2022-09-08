@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTicketRequest extends FormRequest
+class StepTwoTicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class StoreTicketRequest extends FormRequest
         return [
             'date'        =>['date','required'],
             'starttime'   =>['string','required'],
-            'seats'       =>['required','exists:seats,id'],
-            'glasses'     =>['integer','required'],
         ];
     }
 }

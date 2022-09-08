@@ -23,7 +23,7 @@ class TicketPolicy
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function stepOne(User $user, Ticket $ticket)
+    public function stepOne(User $user)
     {
         return Gate::allows('ticket_stepone');
     }
@@ -35,7 +35,7 @@ class TicketPolicy
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function stepTwo(User $user, Ticket $ticket)
+    public function stepTwo(User $user)
     {
         return Gate::allows('ticket_steptwo');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\MovieResource;
 
 class TicketResource extends JsonResource
 {
@@ -23,7 +24,7 @@ class TicketResource extends JsonResource
             'user'          => new UserResource($this->whenloaded('User')),
             'seat'          => new SeatResource($this->whenloaded('Seat')),
             'price'         => new PriceResource($this->whenloaded('Price')),
-            'movie'         => new MoiveResource($this->whenloaded('Moive')),
+            'movie'         => new MovieResource($this->whenloaded('Moive')),
         ];
     }
 }

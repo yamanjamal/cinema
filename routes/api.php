@@ -6,9 +6,10 @@ use App\Http\Controllers\TimeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
-use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\SnackController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -32,8 +33,15 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
         Route::get('activate/{time}',            'activate');
         Route::get('deactivate/{time}',          'deactivate');
     });
-    
     // +++++++++++++++++++++++++++++++end Time api++++++++++++++++++++++++++++++++++
+
+    // +++++++++++++++++++++++++++++++start Ticket api++++++++++++++++++++++++++++++++
+     Route::group(['prefix' => 'Ticket','controller' => TicketController::class], function() {
+        Route::get('/stepOne/{movie}',                  'stepOne');
+        Route::post('/stepTwo/{movie}',                  'stepTwo');
+        Route::post('/store/{movie}',                  'store');
+    });
+    // +++++++++++++++++++++++++++++++end Ticket api++++++++++++++++++++++++++++++++++
 
     // +++++++++++++++++++++++++++++++start Movie api++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'Movie', 'controller' => MovieController::class], function() {
