@@ -11,6 +11,9 @@ use App\Http\Controllers\SnackController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 
+
+Route::get('/Movie/indexuser',           [MovieController::class,'indexuser']);
+
 Route::group(['middleware'=>'auth:sanctum'], function() {
     
     // +++++++++++++++++++++++++++++++start Hall api++++++++++++++++++++++++++++++++
@@ -104,7 +107,6 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     // +++++++++++++++++++++++++++++++end Invoice api++++++++++++++++++++++++++++++++++
 });
 
-Route::get('/Movie/indexuser',           [MovieController::class,'indexuser']);
 
 
 require __DIR__.'/Basecode.php'; 
