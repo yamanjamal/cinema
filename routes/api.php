@@ -48,6 +48,7 @@ Route::group(['middleware'=>'auth:sanctum'], function() {
     // +++++++++++++++++++++++++++++++start Snack api++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'Snack', 'controller' => SnackController::class], function() {
         Route::get('/',                    'index');
+        Route::get('/indexuser',                    'indexuser');
         Route::post('/',                   'store');
         Route::get('/{snack}',             'show');
         Route::post('/{snack}',            'update');

@@ -42,6 +42,7 @@ class MovieController extends BaseController
 
 
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
