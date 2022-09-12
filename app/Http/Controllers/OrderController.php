@@ -68,7 +68,7 @@ class OrderController extends BaseController
         $user_account = $user->Account()->first();
 
         if($user_account->points > $request->total_price){
-            $order = Order::create($request->validated()+ ['total_price' => $request->total_price]);
+            $order = Order::create($request->validated()+ ['total_price' => $request->total_price, 'data'=>now()]);
             
             foreach ($request->order_items as $order_item) {
                 $orderItem = OrederItem::create([

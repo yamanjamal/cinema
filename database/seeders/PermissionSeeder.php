@@ -70,7 +70,7 @@ class PermissionSeeder extends Seeder
 
             'ticket_create',
             'ticket_stepone',
-            'ticket_steptow',
+            'ticket_steptwo',
 
             'invoice_access',
 
@@ -151,7 +151,7 @@ class PermissionSeeder extends Seeder
 
             'ticket_create',
             'ticket_stepone',
-            'ticket_steptow',
+            'ticket_steptwo',
 
             'invoice_access',
 
@@ -272,7 +272,7 @@ class PermissionSeeder extends Seeder
 
             'ticket_create',
             'ticket_stepone',
-            'ticket_steptow',
+            'ticket_steptwo',
 
             'invoice_access',
 

@@ -24,7 +24,6 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'date'        =>['date_format:Y-m-d H:i:s','after_or_equal:today','required'],
             'user_id'     =>['string','required','exists:users,id'],
             'order_items' =>['required'],
             'total_price' =>['required','numeric'],
