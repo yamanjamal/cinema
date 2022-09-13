@@ -254,8 +254,8 @@ class PermissionSeeder extends Seeder
         $user1 = User::where('id',4)->first();
         $user1->assignRole('Distributor');
 
-
         $User = Role::create(['name' => 'User']);
+
 
         // create User permissions
         $permissions = [
@@ -287,5 +287,8 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $permission)   {
             $User->givePermissionTo($permission);
         }
+
+        $user1 = User::where('id',5)->first();
+        $user1->assignRole('User');
     }
 }

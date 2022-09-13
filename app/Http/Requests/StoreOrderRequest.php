@@ -24,7 +24,7 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'     =>['string','required','exists:users,id'],
+            // 'user_id'     =>['string','required','exists:users,id'],
             'order_items' =>['required'],
             'total_price' =>['required','numeric'],
         ];
