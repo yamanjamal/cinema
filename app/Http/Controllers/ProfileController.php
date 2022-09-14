@@ -25,15 +25,15 @@ class profilecontroller extends BaseController
     public function mytickets()
     {
         $this->authorize('mytickets', User::class);
-        $tickets = Ticket::with('Movie')->where('user_id',auth()->user()->id)->paginate(5);
-        return $this->sendResponse(TicketResource::collection($tickets),'Ticket sent sussesfully');
+        $tickets = Ticket::with('Movie')->where('user_id',auth()->user()->id)->paginate(3);
+        return $this->sendResponse(TicketResource::collection($tickets)->response()->getData(true),'Ticket sent sussesfully');
     } 
 
     public function myOrders()
     {
         $this->authorize('myOrders', User::class);
-        $orders = auth()->user()->Orders()->get();
-        return $this->sendResponse(OrderResource::collection($orders),'Ticket sent sussesfully');
+        $orders = auth()->user()->Orders()->paginate(3);
+        return $this->sendResponse(OrderResource::collection($orders)->response()->getData(true),'Order sent sussesfully');
     } 
 
     public function editprofile(UpdateProfileRequest $request)

@@ -39,7 +39,7 @@ class MovieSeeder extends Seeder
 
         Movie::create([
             'name'       =>'Frozen',
-            'description'=>'Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. Fate takes her on a dangerous journey in an attempt to end the eternal winter that has fallen over the kingdom. She is accompanied by ice delivery man Kristoff, his reindeer Sven, and snowman Olaf. On an adventure where she will find out what friendship, courage, family, and true love really means.',
+            'description'=>'Young princess Anna of Arendelle dreams about finding true love at her sister Elsa’s coronation. ',
             'image'      =>'upload/Imgs/frozen.jpg',
             'video'   =>'L0MK7qz13bU',
             'from'       =>'2020-07-11',

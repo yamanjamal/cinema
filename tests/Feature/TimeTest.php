@@ -16,6 +16,8 @@ class TimeTest extends TestCase
     public function test_get_time_index()
     {
         $response = $this->get('http://127.0.0.1:8000/api/Time/');
+
+        
         $this->assertTrue(true);
 
         // $response->assertStatus(200);

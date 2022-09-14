@@ -41,7 +41,7 @@ class TicketController extends BaseController
      */
     public function stepTwo(StepTwoTicketRequest $request, Movie $movie)
     {
-        $this->authorize('stepTwo', Ticket::class);
+        // $this->authorize('stepTwo', Ticket::class);
         $thehall = $movie->Hall()->first();
         $hall = $thehall->id;
         $movie_id = $movie->id;
@@ -60,6 +60,32 @@ class TicketController extends BaseController
     {
         $totla=0;
         $ticketprice = Price::first();
+        if ($request->glasses == 0) {
+            $total = ($ticketprice->ticket_price);
+        }else{
+            $total = ($ticketprice->ticket_price + $ticketprice->glass_price);
+        }
+
+        $user = auth()->user();
+        $user_account = $user->Account()->first();
+
+        if($user_account->points > $total){
+            $ticket = Ticket::create([
+                'movie_id' => $movie->id,
+                'seat_id'  => $request->seats,
+                'user_id'  => auth()->user()->id,
+                'price_id' => '1',
+                'glasses'  => $request->glasses,
+                'date'     => $request->date,
+                'starttime'=> $request->starttime,
+            ]);
+            $ticket->Seat()->update(['available'=>0]);
+            $user_account->update(['points' => ($user_account->points - $total)]);
+            return $this->sendResponse(new TicketResource($ticket),'Ticket created sussesfully');
+        }else{
+            return $this->sendError( '','Account does not have enough money',400);
+        }
+
         // if (count($request->seats)>=1){
         //     foreach ($request->seats as $seat) {
         //         $ticket=Ticket::create([
@@ -81,34 +107,10 @@ class TicketController extends BaseController
         //         $total=($ticketprice->ticket_price + $ticketprice->glass_price)*count($request->seats);
         //     }
         // }else{
-            $ticket = Ticket::create([
-                'movie_id' => $movie->id,
-                'seat_id'  => $request->seats,
-                'user_id'  => auth()->user()->id,
-                'price_id' => '1',
-                'glasses'  => $request->glasses,
-                'date'     => $request->date,
-                'starttime'=> $request->starttime,
-            ]);
-
-            $ticket->Seat()->update(['available'=>0]);
-
-            if ($request->glasses == 0) {
-                $total = ($ticketprice->ticket_price);
-            }else{
-                $total = ($ticketprice->ticket_price + $ticketprice->glass_price);
-            }
             
-            $user = auth()->user();
-            $user_account = $user->Account()->first();
 
-            if($user_account->points > $total){
-                $user_account->update(['points' => ($user_account->points - $total)]);
-            }else{
-                return $this->sendError( '','Account does not have enough money',400);
-            }
+
             // $ticket = Ticket::create($request->validated());
         // }
-        return $this->sendResponse(new TicketResource($ticket),'Ticket created sussesfully');
     }
 }
