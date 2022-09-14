@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         $account = Account::create([
             'code'     => Str::random(6),
             'user_id'     => $admin->id,
-            'points'     => 0.00,
+            'points'     => 10000000.0,
         ]);
 
         $reseption = User::create([

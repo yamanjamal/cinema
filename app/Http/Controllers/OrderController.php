@@ -12,6 +12,7 @@ use App\Http\Resources\OrderResource;
 use App\Http\Resources\InvoiceResource;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Resources\OrderItemResource;
 
 class OrderController extends BaseController
 {
@@ -24,14 +25,14 @@ class OrderController extends BaseController
 
     public function ordered()
     {
-        $this->authorize('ordered', Order::class);
+        // $this->authorize('ordered', Order::class);
         $orders = Order::where('status','ordered')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function approved()
     {
-        $this->authorize('approved', Order::class);
+        // $this->authorize('approved', Order::class);
         $orders = Order::where('status','approved')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
@@ -75,8 +76,9 @@ class OrderController extends BaseController
                     'snack_id' => $order_item['id'],
                     'order_id' => $order->id,
                     'ammount'  => $order_item['ammount'],
-                ]);
+                ])->load(['Snack']);
             }
+
             $user_account->update(['points' => ($user_account->points - $request->total_price)]);
 
             $invoice = Invoice::create([
@@ -86,7 +88,7 @@ class OrderController extends BaseController
                 'order_id' => $order->id,
                 'account_id' => $user_account->id,
             ]);
-            return $this->sendResponse(new InvoiceResource($invoice),'Order created sussesfully');
+            return $this->sendResponse(new OrderResource($order->load('Invoice','OrederItems')),'Order created sussesfully');
         }
         return $this->sendError('you dont have money');
     }
@@ -98,14 +100,14 @@ class OrderController extends BaseController
 
     public function approve(Request $request, Order $order)
     {
-        $this->authorize('approve', Order::class);
+        // $this->authorize('approve', Order::class);
         $order->update(['status'=>'approved']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
 
     public function received(Request $request, Order $order)
     {
-        $this->authorize('received', Order::class);
+        // $this->authorize('received', Order::class);
         $order->update(['status'=>'received']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
