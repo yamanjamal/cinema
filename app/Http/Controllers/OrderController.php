@@ -25,46 +25,20 @@ class OrderController extends BaseController
 
     public function ordered()
     {
-        // $this->authorize('ordered', Order::class);
+        $this->authorize('ordered', Order::class);
         $orders = Order::where('status','ordered')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function approved()
     {
-        // $this->authorize('approved', Order::class);
+        $this->authorize('approved', Order::class);
         $orders = Order::where('status','approved')->paginate($this->paginate);
         return $this->sendResponse(OrderResource::collection($orders->load('User'))->response()->getData(true),'Orders sent sussesfully');
     }
 
     public function store(StoreOrderRequest $request)
     {
-        // $order = Order::create($request->validated()+ ['total_price' => $request->total_price]);
-
-        // $order_items_ids =  array_column($request->order_items, 'id');
-        // $order_items_ammounts =  array_column($request->order_items, 'ammount');
-
-        // $snacks = Snack::
-        // when(count($order_items_ids) > 0, function ($query) use($request, $order_items_ids) {
-        //     return $query->whereIn('id', $order_items_ids);
-        // })
-        // ->when(count($order_items_ids) == 1, function ($query) use($request, $order_items_ids) {
-        //     return $query->where('id', $order_items_ids);
-        // })->get();
-
-        // $snacks_sum = $snacks->sum('price');
-
-        // $total=0;
-        // foreach ($snacks as $index => $snack) {
-        //     // $total = $total +($snack->price*$order_items->ammount);
-        //     $orderItem = OrederItem::create([
-        //         'snack_id' => $snack->id,
-        //         'order_id' => $order->id,
-        //         'ammount'  => $order_items[$index],
-        //     ]);
-        // }
-        // $order = Order::update(['total_price' => $total]);
-
         $user = auth()->user();
         $user_account = $user->Account()->first();
 
@@ -100,14 +74,14 @@ class OrderController extends BaseController
 
     public function approve(Request $request, Order $order)
     {
-        // $this->authorize('approve', Order::class);
+        $this->authorize('approve', Order::class);
         $order->update(['status'=>'approved']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }
 
     public function received(Request $request, Order $order)
     {
-        // $this->authorize('received', Order::class);
+        $this->authorize('received', Order::class);
         $order->update(['status'=>'received']);
         return $this->sendResponse(new OrderResource($order),'Order updated sussesfully');
     }

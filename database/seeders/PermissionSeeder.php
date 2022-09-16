@@ -59,7 +59,7 @@ class PermissionSeeder extends Seeder
             'profile_tickets',
             'profile_orders',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
 
 
             'time_access',
@@ -140,7 +140,7 @@ class PermissionSeeder extends Seeder
             'profile_tickets',
             'profile_orders',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
 
 
             'time_access',
@@ -159,19 +159,8 @@ class PermissionSeeder extends Seeder
             'account_update',
             'account_admin_update',
 
-            'order_show',
-            'order_create',
-            'order_ordered',
-            'order_approved',
-            'order_approve',
-            'order_received',
-
-            'snack_access',
-            'snack_show',
-            'snack_create',
-            'snack_update',
-            'snack_deactivate',
-            'snack_activate',
+            
+            
         ];
 
         foreach ($permissions as $permission)   {
@@ -194,7 +183,7 @@ class PermissionSeeder extends Seeder
 
             'profile_info',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
         ];
 
         foreach ($permissions as $permission)   {
@@ -210,7 +199,7 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'profile_info',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
 
             'order_show',
             'order_create',
@@ -241,7 +230,7 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'profile_info',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
 
             'account_show',
             'account_update',
@@ -267,7 +256,7 @@ class PermissionSeeder extends Seeder
             'profile_tickets',
             'profile_orders',
             'profile_edit',
-            'profile_updatepassword',
+            'profile_changepassword',
 
 
             'ticket_create',

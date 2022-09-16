@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'phone' => '0962144639',
             'email_verified_at' => now(),
-            'id_img'=>'upload/Imgs/5.jpg',
+            'id_img'=>'upload/Imgs/1.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'email' => 'reseption@reseption.com',
             'phone' => '0959374880',
             'email_verified_at' => now(),
-            'id_img'=>'upload/Imgs/10.jpg',
+            'id_img'=>'upload/Imgs/2.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'vendor@vendor.com',
             'phone' => '0988025804',
             'email_verified_at' => now(),
-            'id_img'=>'upload/Imgs/9.jpg',
+            'id_img'=>'upload/Imgs/3.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
@@ -66,14 +66,29 @@ class UserSeeder extends Seeder
             'email' => 'distributor@distributor.com',
             'phone' => '0988025806',
             'email_verified_at' => now(),
-            'id_img'=>'upload/Imgs/9.jpg',
+            'id_img'=>'upload/Imgs/4.jpg',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);
 
         $account = Account::create([
             'code'     => Str::random(6),
             'user_id'     => $distributor->id,
-            'points'     => 0.00,
+            'points'     => 20000.00,
+        ]);
+
+        $user = User::create([
+            'name' => 'user',
+            'email' => 'user@user.com',
+            'phone' => '0988025805',
+            'email_verified_at' => now(),
+            'id_img'=>'upload/Imgs/5.jpg',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ]);
+
+        $account = Account::create([
+            'code'     => Str::random(6),
+            'user_id'     => $user->id,
+            'points'     => 2000.00,
         ]);
         User::factory(10)->create();
     }

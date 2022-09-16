@@ -22,7 +22,7 @@ class TicketFactory extends Factory
             'starttime'=>'3:00',
             'seat_id'=>rand(1,3),
             'movie_id'=>'1',
-            'user_id'=>rand(1,3),
+            'user_id'=>'5',
             'price_id'=>1,
         ];
     }

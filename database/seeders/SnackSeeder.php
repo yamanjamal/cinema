@@ -18,26 +18,26 @@ class SnackSeeder extends Seeder
         Snack::create([
             'name'       =>'Pop Corn',
             'description'=>'Pop corns with salt',
-            'image'      =>'upload/Imgs/p1.jpg',
-            'price'   =>'500',
+            'image'      =>'upload/Imgs/16631218782 (4).jpg',
+            'price'   =>'50',
         ]); 
         Snack::create([
             'name'       =>'Pepsi',
             'description'=>'Pesonal Pepsi',
-            'image'      =>'upload/Imgs/p5.jpg',
-            'price'   =>'200',
+            'image'      =>'upload/Imgs/16631248532 (7).jpg',
+            'price'   =>'20',
         ]);
         Snack::create([
             'name'       =>'Ice Smothy',
             'description'=>'Ice Smothy',
-            'image'      =>'upload/Imgs/s2.jpg',
-            'price'   =>'300',
+            'image'      =>'upload/Imgs/16631219432 (10).jpg',
+            'price'   =>'30',
         ]);
         Snack::create([
             'name'       =>'7up',
             'description'=>'Pesonal 7up',
-            'image'      =>'upload/Imgs/7.jpg',
-            'price'   =>'200',
+            'image'      =>'upload/Imgs/16631219572 (20).jpg',
+            'price'   =>'20',
         ]);  
     }
 }
